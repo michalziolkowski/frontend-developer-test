@@ -11,8 +11,9 @@ Feeld is a dating app. People are free to browse profiles and decide whether the
 * Build a performant, clean and well structured solution;
 * Commit early and often. We want to be able to check your progress;
 * Feel free to address the problem creatively according to your programming tastes (there are always multiple ways to achieve the same goal) and try to use elegant solutions.
-* Feeld.co is a design-driven app. Your solution should look* modern, relevant, simple and in line with our brand image*
+* Feeld.co is a design-driven app. Your solution should look *modern, relevant, simple and in line with our brand image*
 * Go the extra mile. The requirements below are just the bare minimum. Be creative and come up with a solution that will impress us. If you think our requirements are whack, or not appropriate, change them and explain why
+* You have **one week** to complete this challenge
 
 ## The Challenge
 
