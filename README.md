@@ -10,11 +10,11 @@ I have reviewed several dating apps to find inspiration for UI, mainly focusing 
   - This one has a vertical list, if you want to skip user just swipe down as you do on social apps when not intereseted in content
 
 #### Design Prototype
-I have merged some properties of reviewed apps that I like and came up with original design with **FeelD* brand colors.
+I have merged some properties of reviewed apps that I liked and came up with original design with **FeelD** brand colors.
 
 ![App Design](https://raw.githubusercontent.com/michalziolkowski/frontend-developer-test/master/img/design.png)
 
 #### Atomic Design Structure
-I have decided to use atomic design structure as I find it understandable and clear.
+I have decided to use atomic design for components structure as I find it understandable and clear. It is also a good bridge between designing and developing React apps.
 
 ![App Atomic Structure](https://raw.githubusercontent.com/michalziolkowski/frontend-developer-test/master/img/atomic-structure.png)
