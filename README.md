@@ -45,28 +45,28 @@ Below is an overview of why I choose these packages.
 ## App
 
 - **Expo** - tool-chain for React Native development.
-  - Expo is a public app for iOs/Android that can receive js code directly from local packager.
-  - Saves a lot of time and pain related to native code setup, builds, deploy and allows publishing updates very effectively.
-  - It isn't perfect as you can only use native functionalities that are already supported by expo but will completely work for this project.
+  - expo is a public app for iOs/Android that can receive js code directly from local packager.
+  - saves a lot of time and pain related to native code setup, builds, deploy and allows publishing updates very effectively.
+  - it isn't perfect as you can only use native functionalities that are already supported by expo but will completely work for this project.
 
 - **Styled Components** - css-in-js library that supports React Native.
-  - Styled components provides RN primitives and lets you style them using css syntax in a very clean way.
-  - Supports global themes and injecting style depending on props.
+  - styled components provides RN primitives and lets you style them using css syntax in a very clean way.
+  - supports global themes and injecting style depending on props.
 
 - **Redux** - library for state management.
-  - Components can be completely independent of application state, therefore can focus strictly on user interface. This keeps the code clean but also makes testing UI much simpler as there is much less need for mocking.
-  - It also makes it easier to understand the state and debug it through reducers.
-  - Redux structure allows executing synchronous and asynchronous code undistinguishable for components layer which makes it easy to work with.
+  - components can be completely independent of application state, therefore can focus strictly on user interface. This keeps the code clean but also makes testing UI much simpler as there is much less need for mocking.
+  - it also makes it easier to understand the state and debug it through reducers.
+  - redux structure allows executing synchronous and asynchronous code undistinguishable for components layer which makes it easy to work with.
 
 ## Compilation & Type check
 
 - **TypeScript** - typed superset of JS that compiles to JS
-  - Type checking speeds up development because of IDE support hints
-  - Makes it possible to view library contents without reaching to docs
-  - Compiles to optimized JS code
-  - Makes you find out your bugs in early stage of development
-  - Excludes possibility of making type mistake that would result with an error
-  - Is much faster than Flow solution
+  - type checking speeds up development because of IDE support hints
+  - makes it possible to view library contents without reaching to docs
+  - compiles to optimized JS code
+  - makes you find out your bugs in early stage of development
+  - excludes possibility of making type mistake that would result with an error
+  - is much faster than Flow solution
 
 - **Babel** - JS compiler
   - in this solution it compiles TypeScript generated JS
