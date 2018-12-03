@@ -1,0 +1,89 @@
+{
+  "name": "frontend-developer-test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/expo": "^31.0.1",
+    "expo": "^31.0.6",
+    "react": "^16.6.3",
+    "react-native": "^0.57.7",
+    "react-native-expo-image-cache": "^3.2.0",
+    "styled-components": "^4.1.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^4.0.11",
+    "@storybook/addon-knobs": "^4.0.11",
+    "@storybook/addon-links": "^4.0.11",
+    "@storybook/addon-ondevice-knobs": "^4.0.11",
+    "@storybook/addons": "^4.0.11",
+    "@storybook/react-native": "^4.0.11",
+    "@types/jest": "^23.3.10",
+    "@types/react": "^16.6.3",
+    "@types/react-native": "^0.57.15",
+    "@types/storybook__addon-knobs": "^3.4.1",
+    "@types/storybook__react": "^4.0.0",
+    "@types/storybook__react-native": "^3.0.2",
+    "@types/styled-components": "^4.1.2",
+    "@types/expo__vector-icons": "^6.2.3",
+    "cross-env": "^5.2.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
+    "react-native-scripts-ts": "^1.15.0",
+    "react-native-storybook-loader": "^1.8.0",
+    "react-native-typescript-transformer": "^1.2.10",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
+    "jest-expo": "^31.0.0",
+    "enzyme": "^3.7.0",
+    "typescript": "^3.2.1",
+    "prettier": "1.15.3",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1"
+  },
+  "main": "./index.js",
+  "scripts": {
+    "start": "cross-env REACT_APP_MODE=\"APP\" && react-native-scripts-ts start --reset-cache",
+    "storybook": "rnstl && cross-env REACT_APP_MODE=\"STORYBOOK\" && react-native-scripts-ts start --reset-cache",
+    "android": "react-native-scripts-ts android",
+    "ios": "react-native-scripts-ts ios",
+    "test": "jest"
+  },
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.story.tsx",
+      "outputFile": "./storybook/generated-stories.js"
+    }
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "preset": "jest-expo",
+    "testMatch": [
+      "**/__tests__/**/*.[tj]s?(x)",
+      "**/?(*.)(spec|test).[tj]s?(x)"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}

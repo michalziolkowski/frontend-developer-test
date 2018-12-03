@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-airbnb",
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "object-literal-sort-keys": false,
+    "variable-name": [true, "allow-pascal-case", "ban-keywords"],
+    "jsx-boolean-value": [true, "never"],
+    "import-name": false,
+    "prettier": true
+  }
+}
