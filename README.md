@@ -44,11 +44,6 @@ Below is an overview of why I choose these packages.
 
 ## App
 
-- **Expo** - tool-chain for React Native development.
-  - expo is a public app for iOs/Android that can receive js code directly from local packager.
-  - saves a lot of time and pain related to native code setup, builds, deploy and allows publishing updates very effectively.
-  - it isn't perfect as you can only use native functionalities that are already supported by expo but will completely work for this project.
-
 - **Styled Components** - css-in-js library that supports React Native.
   - styled components provides RN primitives and lets you style them using css syntax in a very clean way.
   - supports global themes and injecting style depending on props.
@@ -59,6 +54,11 @@ Below is an overview of why I choose these packages.
   - redux structure allows executing synchronous and asynchronous code undistinguishable for components layer which makes it easy to work with.
 
 ## Compilation & Type check
+
+- **Expo** - tool-chain for React Native development.
+  - expo is a public app for iOs/Android that can receive js code directly from local packager.
+  - saves a lot of time and pain related to native code setup, builds, deploy and allows publishing updates very effectively.
+  - it isn't perfect as you can only use native functionalities that are already supported by expo but will completely work for this project.
 
 - **TypeScript** - typed superset of JS that compiles to JS
   - type checking speeds up development because of IDE support hints
