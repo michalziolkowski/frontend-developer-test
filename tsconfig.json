@@ -1,21 +1,26 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
+    "module": "esnext",
     "outDir": "build/dist",
     "sourceMap": true,
     "experimentalDecorators": true,
-    "jsx": "react-native",
-    "lib": ["dom", "es2015", "es2016"],
+    "jsx": "preserve",
+    "lib": ["es2015", "es2016"],
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "noEmitHelpers": true,
-    "importHelpers": true,
+    "esModuleInterop": true,
+    "noEmit": true,
     "strict": true,
-    "noImplicitReturns": true,
-    "paths": {
-      "*": ["*.web", "*.android", "*.ios", "*"],
-      "~/*": ["src/*"]
-    }
-  }
+    "isolatedModules": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"]
 }

@@ -1,6 +1,3 @@
-import * as React from "react";
-import { Text } from "react-native";
+import Storybook from "./storybook";
 
-const App = () => <Text>FeelD Frontend Developer Test</Text>;
-
-export default App;
+export default Storybook;
