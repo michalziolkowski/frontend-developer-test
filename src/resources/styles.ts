@@ -1,4 +1,6 @@
-const theme = {
+import theme from "./theme";
+
+const styles = {
   text: {
     default: {
       color: "#777",
@@ -20,7 +22,13 @@ const theme = {
       fontSize: 12,
       fontWeight: "normal"
     }
+  },
+  icon: {
+    default: {
+      size: 38,
+      color: theme.color.gray
+    }
   }
 };
 
-export default theme;
+export default styles;

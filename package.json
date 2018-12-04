@@ -21,6 +21,7 @@
     "@types/react-native": "^0.57.7",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-test-renderer": "^16.0.3",
+    "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react-native": "^3.0.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
@@ -47,7 +48,8 @@
     "react-dom": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "styled-components": "^4.1.2",
-    "tslib": "^1.9.1"
+    "tslib": "^1.9.1",
+    "tslint": "^5.11.0"
   },
   "jest": {
     "preset": "jest-expo",
