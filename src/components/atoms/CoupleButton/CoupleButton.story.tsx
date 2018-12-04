@@ -16,5 +16,5 @@ storiesOf("atoms/CoupleButton", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <AtomView>{story()}</AtomView>)
   .add("default", () => (
-    <CoupleButton uri={text("uri", "https://www.placecage.com/100/100")} />
+    <CoupleButton uri={text("uri", "https://www.placecage.com/200/200")} />
   ));

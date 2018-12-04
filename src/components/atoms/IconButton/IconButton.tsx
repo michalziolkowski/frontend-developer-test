@@ -10,10 +10,11 @@ export interface IProps {
   onClick?: () => void;
 }
 
-export const StyledTouchable = styled.TouchableOpacity`
+const StyledTouchable = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
+StyledTouchable.displayName = "Touchable";
 
 const IconButton = ({
   iconName,

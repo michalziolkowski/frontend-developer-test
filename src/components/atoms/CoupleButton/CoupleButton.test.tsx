@@ -3,11 +3,7 @@ import React from "react";
 import styles from "../../../resources/styles";
 import theme from "../../../resources/theme";
 import TestUtils from "../../../utils/TestUtils";
-import CoupleButton, {
-  IProps,
-  StyledImage,
-  StyledTouchable
-} from "./CoupleButton";
+import CoupleButton, { ImageView, IProps, StyledImage } from "./CoupleButton";
 
 const props: IProps = {
   uri: "test-uri"
@@ -20,7 +16,7 @@ let image: ShallowWrapper;
 let icon: ShallowWrapper;
 
 const updateWrappers = () => {
-  touchable = wrapper.find(`${StyledTouchable.displayName}`);
+  touchable = wrapper.find("TouchableOpacity");
   image = wrapper.find("Image");
   icon = wrapper.find("Icon");
 };
@@ -90,17 +86,42 @@ describe("INTERACTION", () => {
 });
 
 describe("STYLE", () => {
-  describe("Image", () => {
-    it("has big icon style", () => {
+  describe("ImageView", () => {
+    it("has big icon style height & width", () => {
       // given
-      const styledText = TestUtils.renderComponentStyles(<StyledImage />);
+      const touchableStyles = TestUtils.renderComponentStyles(<ImageView />);
 
       // then
       const expectedStyles = {
         height: styles.icon.size.big,
         width: styles.icon.size.big
       };
-      expect(styledText).toMatchObject(expectedStyles);
+      expect(touchableStyles).toMatchObject(expectedStyles);
+    });
+  });
+
+  describe("Image", () => {
+    it("has big icon style height & width (minus shadow offset)", () => {
+      // given
+      const imageStyles = TestUtils.renderComponentStyles(<StyledImage />);
+
+      // then
+      const expectedStyles = {
+        height: styles.icon.size.big - 2,
+        width: styles.icon.size.big - 2
+      };
+      expect(imageStyles).toMatchObject(expectedStyles);
+    });
+
+    it("has border color set to theme color primaryDark", () => {
+      // given
+      const imageStyles = TestUtils.renderComponentStyles(<StyledImage />);
+
+      // then
+      const expectedStyles = {
+        borderColor: theme.color.primaryDark
+      };
+      expect(imageStyles).toMatchObject(expectedStyles);
     });
   });
 });

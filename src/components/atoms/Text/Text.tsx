@@ -17,6 +17,7 @@ export const StyledText = styled.Text(
     color: ${styles.text.color[props.variant]};
   `
 );
+StyledText.displayName = "Text";
 
 const Text = ({ variant = "default", children }: IProps) => (
   <StyledText variant={variant} children={children} />

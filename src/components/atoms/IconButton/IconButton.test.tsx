@@ -1,7 +1,7 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import styles from "../../../resources/styles";
-import IconButton, { IProps, StyledTouchable } from "./IconButton";
+import IconButton, { IProps } from "./IconButton";
 
 const props: IProps = {
   iconName: "heart"
@@ -13,7 +13,7 @@ let touchable: ShallowWrapper;
 let icon: ShallowWrapper;
 
 const updateWrappers = () => {
-  touchable = wrapper.find(`${StyledTouchable.displayName}`);
+  touchable = wrapper.find("Touchable");
   icon = wrapper.find("Icon");
 };
 

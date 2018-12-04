@@ -12,7 +12,7 @@ let text: ShallowWrapper;
 
 beforeEach(() => {
   wrapper = shallow<IProps>(<Text>{testText}</Text>);
-  text = wrapper.find(`${StyledText.displayName}`);
+  text = wrapper.find("Text");
 });
 
 /* Test Cases */
@@ -38,7 +38,7 @@ describe("STYLE", () => {
   describe("Text", () => {
     it("if *variant* is 'default' has default text style", () => {
       // given
-      const styledText = TestUtils.renderComponentStyles(
+      const textStyles = TestUtils.renderComponentStyles(
         <StyledText variant="default" />
       );
 
@@ -48,12 +48,12 @@ describe("STYLE", () => {
         fontSize: styles.text.fontSize.default,
         color: styles.text.color.default
       };
-      expect(styledText).toMatchObject(expectedStyles);
+      expect(textStyles).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h1' has h1 text style", () => {
       // given
-      const styledText = TestUtils.renderComponentStyles(
+      const textStyles = TestUtils.renderComponentStyles(
         <StyledText variant="h1" />
       );
 
@@ -63,12 +63,12 @@ describe("STYLE", () => {
         fontSize: styles.text.fontSize.h1,
         color: styles.text.color.h1
       };
-      expect(styledText).toMatchObject(expectedStyles);
+      expect(textStyles).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h2' has h2 text style", () => {
       // given
-      const styledText = TestUtils.renderComponentStyles(
+      const textStyles = TestUtils.renderComponentStyles(
         <StyledText variant="h2" />
       );
 
@@ -78,12 +78,12 @@ describe("STYLE", () => {
         fontSize: styles.text.fontSize.h2,
         color: styles.text.color.h2
       };
-      expect(styledText).toMatchObject(expectedStyles);
+      expect(textStyles).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h3' has h3 text style", () => {
       // given
-      const styledText = TestUtils.renderComponentStyles(
+      const textStyles = TestUtils.renderComponentStyles(
         <StyledText variant="h3" />
       );
 
@@ -93,7 +93,7 @@ describe("STYLE", () => {
         fontSize: styles.text.fontSize.h3,
         color: styles.text.color.h3
       };
-      expect(styledText).toMatchObject(expectedStyles);
+      expect(textStyles).toMatchObject(expectedStyles);
     });
   });
 });
