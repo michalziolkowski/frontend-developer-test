@@ -2,32 +2,35 @@ import theme from "./theme";
 
 const styles = {
   text: {
-    default: {
-      color: "#777",
-      fontSize: 16,
-      fontWeight: "100"
+    color: {
+      default: "#777",
+      h1: "#000",
+      h2: "#000",
+      h3: "#696969"
     },
-    h1: {
-      color: "#000",
-      fontSize: 20,
-      fontWeight: "bold"
+    fontSize: {
+      default: 16,
+      h1: 20,
+      h2: 16,
+      h3: 12
     },
-    h2: {
-      color: "#000",
-      fontSize: 16,
-      fontWeight: "bold"
-    },
-    h3: {
-      color: "#696969",
-      fontSize: 12,
-      fontWeight: "normal"
+    fontWeight: {
+      default: "100",
+      h1: "bold",
+      h2: "bold",
+      h3: "normal"
     }
   },
   icon: {
-    default: {
-      size: 38,
-      color: theme.color.gray
+    color: theme.color.gray,
+    size: {
+      default: 38,
+      small: 22,
+      big: 50
     }
+  },
+  button: {
+    opacity: 0.6
   }
 };
 

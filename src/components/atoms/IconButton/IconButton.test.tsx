@@ -35,8 +35,8 @@ describe("RENDER", () => {
       expect(touchable.exists()).toBe(true);
     });
 
-    it("has activeOpacity set to 0.6", () => {
-      expect(touchable.props()["activeOpacity"]).toEqual(0.6);
+    it("has activeOpacity set to default button opacity", () => {
+      expect(touchable.props()["activeOpacity"]).toEqual(styles.button.opacity);
     });
   });
 
@@ -50,7 +50,7 @@ describe("RENDER", () => {
     });
 
     it("has size set to default icon size", () => {
-      expect(icon.props()["size"]).toEqual(styles.icon.default.size);
+      expect(icon.props()["size"]).toEqual(styles.icon.size.default);
     });
 
     it("has color set to *iconColor*", () => {

@@ -10,15 +10,13 @@ export interface IProps {
   children: string;
 }
 
-export const StyledText = styled.Text((props: { variant: TextVariant }) => {
-  const { fontSize, fontWeight, color } = styles.text[props.variant];
-
-  return `
-    font-weight: ${fontWeight};
-    font-size: ${fontSize};
-    color: ${color};
-  `;
-});
+export const StyledText = styled.Text(
+  (props: { variant: TextVariant }) => `
+    font-weight: ${styles.text.fontWeight[props.variant]};
+    font-size: ${styles.text.fontSize[props.variant]};
+    color: ${styles.text.color[props.variant]};
+  `
+);
 
 const Text = ({ variant = "default", children }: IProps) => (
   <StyledText variant={variant} children={children} />

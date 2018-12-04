@@ -26,14 +26,15 @@ storiesOf("atoms/IconButton", module)
       <AtomView>{story()}</AtomView>
     </BackgroundView>
   ))
-  .add("heart", () =>
+  .add("heart", () => (
     <IconButton
       iconName={text("iconName", "heart")}
       iconColor={text("iconColor", theme.color.white)}
     />
-  ).add("information", () =>
+  ))
+  .add("information", () => (
     <IconButton
       iconName={text("iconName", "information")}
       iconColor={text("iconColor", null)}
     />
-  );
+  ));

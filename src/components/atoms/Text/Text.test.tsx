@@ -41,10 +41,14 @@ describe("STYLE", () => {
       const styledText = TestUtils.renderComponentStyles(
         <StyledText variant="default" />
       );
-      const { fontWeight, fontSize, color } = styles.text.default;
 
       // then
-      expect(styledText).toMatchObject({ fontWeight, fontSize, color });
+      const expectedStyles = {
+        fontWeight: styles.text.fontWeight.default,
+        fontSize: styles.text.fontSize.default,
+        color: styles.text.color.default
+      };
+      expect(styledText).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h1' has h1 text style", () => {
@@ -52,10 +56,14 @@ describe("STYLE", () => {
       const styledText = TestUtils.renderComponentStyles(
         <StyledText variant="h1" />
       );
-      const { fontWeight, fontSize, color } = styles.text.h1;
 
       // then
-      expect(styledText).toMatchObject({ fontWeight, fontSize, color });
+      const expectedStyles = {
+        fontWeight: styles.text.fontWeight.h1,
+        fontSize: styles.text.fontSize.h1,
+        color: styles.text.color.h1
+      };
+      expect(styledText).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h2' has h2 text style", () => {
@@ -63,10 +71,14 @@ describe("STYLE", () => {
       const styledText = TestUtils.renderComponentStyles(
         <StyledText variant="h2" />
       );
-      const { fontWeight, fontSize, color } = styles.text.h2;
 
       // then
-      expect(styledText).toMatchObject({ fontWeight, fontSize, color });
+      const expectedStyles = {
+        fontWeight: styles.text.fontWeight.h2,
+        fontSize: styles.text.fontSize.h2,
+        color: styles.text.color.h2
+      };
+      expect(styledText).toMatchObject(expectedStyles);
     });
 
     it("if *variant* is 'h3' has h3 text style", () => {
@@ -74,10 +86,14 @@ describe("STYLE", () => {
       const styledText = TestUtils.renderComponentStyles(
         <StyledText variant="h3" />
       );
-      const { fontWeight, fontSize, color } = styles.text.h3;
 
       // then
-      expect(styledText).toMatchObject({ fontWeight, fontSize, color });
+      const expectedStyles = {
+        fontWeight: styles.text.fontWeight.h3,
+        fontSize: styles.text.fontSize.h3,
+        color: styles.text.color.h3
+      };
+      expect(styledText).toMatchObject(expectedStyles);
     });
   });
 });

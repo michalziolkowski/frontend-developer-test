@@ -18,15 +18,15 @@ export const StyledTouchable = styled.TouchableOpacity`
 const IconButton = ({
   iconName,
   onClick,
-  iconColor = styles.icon.default.color
-}: IProps) => {
-  const { size } = styles.icon.default;
-
-  return (
-    <StyledTouchable onPress={onClick} activeOpacity={0.6}>
-      <MaterialCommunityIcons name={iconName} size={size} color={iconColor} />
-    </StyledTouchable>
-  );
-};
+  iconColor = styles.icon.color
+}: IProps) => (
+  <StyledTouchable onPress={onClick} activeOpacity={styles.button.opacity}>
+    <MaterialCommunityIcons
+      name={iconName}
+      size={styles.icon.size.default}
+      color={iconColor}
+    />
+  </StyledTouchable>
+);
 
 export default IconButton;
