@@ -6,10 +6,11 @@ import styles from "../../../resources/styles";
 type TextVariant = "default" | "h1" | "h2" | "h3";
 
 export const StyledText = styled.Text(
-  (props: { variant: TextVariant }) => `
+  (props: { variant: TextVariant; style: string }) => `
     font-weight: ${styles.text.fontWeight[props.variant]};
     font-size: ${styles.text.fontSize[props.variant]};
     color: ${styles.text.color[props.variant]};
+    ${props.style}
   `
 );
 StyledText.displayName = "Text";
@@ -17,10 +18,11 @@ StyledText.displayName = "Text";
 export interface IProps {
   variant?: TextVariant;
   children: string;
+  style?: string;
 }
 
-const Text = ({ variant = "default", children }: IProps) => (
-  <StyledText variant={variant} children={children} />
+const Text = ({ variant = "default", children, style }: IProps) => (
+  <StyledText variant={variant} children={children} style={style} />
 );
 
 export default Text;

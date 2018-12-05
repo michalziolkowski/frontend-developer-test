@@ -9,23 +9,14 @@ import theme from "../../../resources/theme";
 const BackgroundView = styled.View`
   flex: 1;
   justify-content: center;
+  align-items: center;
   align-self: stretch;
   background-color: ${theme.color.primary};
 `;
 
-const AtomView = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-self: center;
-`;
-
 storiesOf("atoms/IconButton", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => (
-    <BackgroundView>
-      <AtomView>{story()}</AtomView>
-    </BackgroundView>
-  ))
+  .addDecorator(story => <BackgroundView>{story()}</BackgroundView>)
   .add("heart", () => (
     <IconButton
       iconName={text("iconName", "heart")}
