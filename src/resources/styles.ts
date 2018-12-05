@@ -46,6 +46,12 @@ const styles = {
         inactive: "#303030"
       }
     }
+  },
+  userInfo: {
+    backgroundColor: "#fff",
+    header: {
+      paddingVertical: 10
+    }
   }
 };
 

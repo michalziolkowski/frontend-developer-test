@@ -5,7 +5,7 @@ import styles from "../../../resources/styles";
 
 export const StyledIndicator = styled.View`
   flex-direction: row;
-  align-self: baseline;
+  align-self: center;
   padding-vertical: ${styles.sliderIndicator.padding};
   padding-horizontal: ${styles.sliderIndicator.padding};
   justify-content: center;

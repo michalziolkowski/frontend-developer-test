@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import renderer from "react-test-renderer";
 
+// TODO should I test this?
 const renderComponentStyles = (element: ReactElement<any>) => {
   const styledComponent = renderer.create(element).toJSON();
 

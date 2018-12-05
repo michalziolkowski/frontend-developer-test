@@ -5,12 +5,6 @@ import React from "react";
 import styled from "styled-components/native";
 import SliderIndicator from ".";
 
-const BackgroundView = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-self: stretch;
-`;
-
 const MoleculeView = styled.View`
   flex: 1;
   justify-content: center;
@@ -20,11 +14,7 @@ const MoleculeView = styled.View`
 
 storiesOf("atoms/SliderIndicator", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => (
-    <BackgroundView>
-      <MoleculeView>{story()}</MoleculeView>
-    </BackgroundView>
-  ))
+  .addDecorator(story => <MoleculeView>{story()}</MoleculeView>)
   .add("default", () => (
     <SliderIndicator count={number("count", 6)} index={number("index", 2)} />
   ));
