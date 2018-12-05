@@ -9,6 +9,7 @@ function loadStories() {
   require('../components/atoms/IconButton/IconButton.story');
   require('../components/atoms/SliderIndicator/SliderIndicator.story');
   require('../components/atoms/Text/Text.story');
+  require('../components/molecules/UserInfoDetails/UserInfoDetails.story');
   require('../components/molecules/UserInfoHeader/UserInfoHeader.story');
   
 }
@@ -18,6 +19,7 @@ const stories = [
   '../components/atoms/IconButton/IconButton.story',
   '../components/atoms/SliderIndicator/SliderIndicator.story',
   '../components/atoms/Text/Text.story',
+  '../components/molecules/UserInfoDetails/UserInfoDetails.story',
   '../components/molecules/UserInfoHeader/UserInfoHeader.story',
   
 ];

@@ -51,6 +51,11 @@ const styles = {
     backgroundColor: "#fff",
     header: {
       paddingVertical: 10
+    },
+    details: {
+      header: {
+        margin: 20
+      }
     }
   }
 };
