@@ -4,17 +4,17 @@ import React from "react";
 import styled from "styled-components/native";
 import styles from "../../../resources/styles";
 
-export interface IProps {
-  iconName: string;
-  iconColor?: string;
-  onClick?: () => void;
-}
-
 const StyledTouchable = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
 StyledTouchable.displayName = "Touchable";
+
+export interface IProps {
+  iconName: string;
+  iconColor?: string;
+  onClick?: () => void;
+}
 
 const IconButton = ({
   iconName,

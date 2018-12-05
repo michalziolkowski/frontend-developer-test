@@ -31,6 +31,21 @@ const styles = {
   },
   button: {
     opacity: 0.6
+  },
+  sliderIndicator: {
+    opacity: 0.6,
+    padding: 3,
+    point: {
+      margin: 3,
+      size: {
+        active: 8,
+        inactive: 6
+      },
+      color: {
+        active: "#fff",
+        inactive: "#303030"
+      }
+    }
   }
 };
 

@@ -6,11 +6,6 @@ import styled from "styled-components/native";
 import styles from "../../../resources/styles";
 import theme from "../../../resources/theme";
 
-export interface IProps {
-  uri: string;
-  onClick?: () => void;
-}
-
 const ButtonContainer = styled.View`
   align-self: center;
   justify-content: center;
@@ -55,6 +50,11 @@ const IconView = styled.View`
   top: -3;
   elevation: 2;
 `;
+
+export interface IProps {
+  uri: string;
+  onClick?: () => void;
+}
 
 const CoupleButton = (props: IProps) => {
   const { onClick, uri } = props;
