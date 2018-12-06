@@ -4,7 +4,17 @@ import { TouchableOpacity } from "react-native";
 // @ts-ignore
 import styled from "styled-components/native";
 import styles from "../../../resources/styles";
-import theme from "../../../resources/theme";
+
+const {
+  iconName,
+  iconSize,
+  iconColor,
+  opacity,
+  iconOffset,
+  borderWidth,
+  borderColor,
+  size
+} = styles.coupleButton;
 
 const ButtonContainer = styled.View`
   align-self: center;
@@ -21,8 +31,8 @@ const ButtonContainer = styled.View`
 // },
 export const ImageView = styled.View`
   elevation: 1;
-  width: ${styles.icon.size.big};
-  height: ${styles.icon.size.big};
+  width: ${size};
+  height: ${size};
   align-self: center;
   align-items: center;
   justify-content: center;
@@ -33,21 +43,22 @@ export const ImageView = styled.View`
 `;
 ImageView.displayName = "ImageView";
 
+// Extra -2 due to overlaying ImageView shadow
 export const StyledImage = styled.Image`
-  width: ${styles.icon.size.big - 2};
-  height: ${styles.icon.size.big - 2};
+  width: ${size - 2};
+  height: ${size - 2};
   align-self: center;
-  border-width: 2;
-  border-color: ${theme.color.primaryDark};
+  border-width: ${borderWidth};
+  border-color: ${borderColor};
   border-radius: 100;
   overflow: hidden;
 `;
 StyledImage.displayName = "Image";
 
-const IconView = styled.View`
+export const IconView = styled.View`
   position: absolute;
-  right: -3;
-  top: -3;
+  right: ${iconOffset};
+  top: ${iconOffset};
   elevation: 2;
 `;
 
@@ -61,7 +72,7 @@ const CoupleButton = (props: IProps) => {
 
   return (
     <ButtonContainer>
-      <TouchableOpacity onPress={onClick} activeOpacity={styles.button.opacity}>
+      <TouchableOpacity onPress={onClick} activeOpacity={opacity}>
         <ImageView>
           <StyledImage source={{ uri }} />
         </ImageView>
@@ -69,9 +80,9 @@ const CoupleButton = (props: IProps) => {
 
       <IconView>
         <MaterialCommunityIcons
-          name={"heart"}
-          size={styles.icon.size.small}
-          color={theme.color.primaryDark}
+          name={iconName}
+          size={iconSize}
+          color={iconColor}
         />
       </IconView>
     </ButtonContainer>

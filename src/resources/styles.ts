@@ -1,5 +1,3 @@
-import theme from "./theme";
-
 const styles = {
   text: {
     color: {
@@ -21,42 +19,58 @@ const styles = {
       h3: "normal"
     }
   },
-  icon: {
-    color: theme.color.gray,
-    size: {
-      default: 38,
-      small: 22,
-      big: 50
-    }
+  coupleButton: {
+    opacity: 0.6,
+    size: 60,
+    borderColor: "#ef4200",
+    borderWidth: 2,
+    iconOffset: -3,
+    iconName: "heart",
+    iconSize: 22,
+    iconColor: "#ef4200"
   },
-  button: {
-    opacity: 0.6
+  iconButton: {
+    opacity: 0.6,
+    size: 34,
+    color: "#696969"
   },
   sliderIndicator: {
     opacity: 0.6,
     padding: 3,
-    point: {
-      margin: 3,
-      size: {
-        active: 8,
-        inactive: 6
-      },
-      color: {
-        active: "#fff",
-        inactive: "#303030"
-      }
+    borderRadius: 2,
+    pointMargin: 3,
+    pointSize: {
+      active: 8,
+      inactive: 6
+    },
+    pointColor: {
+      active: "#fff",
+      inactive: "#303030"
     }
   },
-  userInfo: {
+  userCard: {
     backgroundColor: "#fff",
-    header: {
-      paddingVertical: 10
-    },
-    details: {
-      header: {
-        margin: 20
-      }
-    }
+    borderRadius: 2,
+    widthRatio: 0.85,
+    coupleButtonOffset: 15,
+    padding: 10,
+    arrowIcon: "chevron-down",
+    infoIcon: "information",
+    springAnimationFriction: 6,
+    linearAnimationDuration: 200
+  },
+  userInfoHeader: {
+    iconButtonSize: 50,
+    height: 60,
+    paddingVertical: 10
+  },
+  userInfoDetails: {
+    headerMargin: 20
+  },
+  imageSlider: {
+    borderRadius: 2,
+    indicatorOffset: 10,
+    backgroundColor: "#666"
   }
 };
 

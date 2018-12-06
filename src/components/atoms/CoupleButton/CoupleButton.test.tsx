@@ -1,9 +1,13 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import styles from "../../../resources/styles";
-import theme from "../../../resources/theme";
 import TestUtils from "../../../utils/TestUtils";
-import CoupleButton, { ImageView, IProps, StyledImage } from "./CoupleButton";
+import CoupleButton, {
+  IconView,
+  ImageView,
+  IProps,
+  StyledImage
+} from "./CoupleButton";
 
 const props: IProps = {
   uri: "test-uri"
@@ -33,8 +37,9 @@ describe("RENDER", () => {
       expect(touchable.exists()).toBe(true);
     });
 
-    it("has activeOpacity set to default button opacity", () => {
-      expect(touchable.props()["activeOpacity"]).toEqual(styles.button.opacity);
+    it("has activeOpacity set to CoupleButton style opacity", () => {
+      const { opacity } = styles.coupleButton;
+      expect(touchable.props()["activeOpacity"]).toEqual(opacity);
     });
   });
 
@@ -53,16 +58,19 @@ describe("RENDER", () => {
       expect(icon.exists()).toBe(true);
     });
 
-    it("has name set to 'heart'", () => {
-      expect(icon.props()["name"]).toEqual("heart");
+    it("has name set to CoupleButton style iconName", () => {
+      const { iconName } = styles.coupleButton;
+      expect(icon.props()["name"]).toEqual(iconName);
     });
 
-    it("has size set to small icon size", () => {
-      expect(icon.props()["size"]).toEqual(styles.icon.size.small);
+    it("has size set to CoupleButton style iconSize", () => {
+      const { iconSize } = styles.coupleButton;
+      expect(icon.props()["size"]).toEqual(iconSize);
     });
 
-    it("has color set to theme color 'primaryDark'", () => {
-      expect(icon.props()["color"]).toEqual(theme.color.primaryDark);
+    it("has color set to CoupleButton style iconColor", () => {
+      const { iconColor } = styles.coupleButton;
+      expect(icon.props()["color"]).toEqual(iconColor);
     });
   });
 });
@@ -87,41 +95,49 @@ describe("INTERACTION", () => {
 
 describe("STYLE", () => {
   describe("ImageView", () => {
-    it("has big icon style height & width", () => {
+    it("has CoupleButton styles size", () => {
       // given
-      const touchableStyles = TestUtils.renderComponentStyles(<ImageView />);
+      const imageViewStyles = TestUtils.renderComponentStyles(<ImageView />);
+      const { size } = styles.coupleButton;
 
       // then
       const expectedStyles = {
-        height: styles.icon.size.big,
-        width: styles.icon.size.big
+        height: size,
+        width: size
       };
-      expect(touchableStyles).toMatchObject(expectedStyles);
+      expect(imageViewStyles).toMatchObject(expectedStyles);
     });
   });
 
   describe("Image", () => {
-    it("has big icon style height & width (minus shadow offset)", () => {
+    it("has CoupleButton styles & width, borderColor, borderWidth", () => {
       // given
+      const { size, borderWidth, borderColor } = styles.coupleButton;
       const imageStyles = TestUtils.renderComponentStyles(<StyledImage />);
 
       // then
       const expectedStyles = {
-        height: styles.icon.size.big - 2,
-        width: styles.icon.size.big - 2
+        borderWidth,
+        borderColor,
+        height: size - 2,
+        width: size - 2
       };
       expect(imageStyles).toMatchObject(expectedStyles);
     });
+  });
 
-    it("has border color set to theme color primaryDark", () => {
+  describe("IconView", () => {
+    it("has CoupleButton styles iconOffset", () => {
       // given
-      const imageStyles = TestUtils.renderComponentStyles(<StyledImage />);
+      const { iconOffset } = styles.coupleButton;
+      const iconViewStyles = TestUtils.renderComponentStyles(<IconView />);
 
       // then
       const expectedStyles = {
-        borderColor: theme.color.primaryDark
+        right: iconOffset,
+        top: iconOffset
       };
-      expect(imageStyles).toMatchObject(expectedStyles);
+      expect(iconViewStyles).toMatchObject(expectedStyles);
     });
   });
 });
