@@ -4,8 +4,12 @@ import React from "react";
 import styled from "styled-components/native";
 import styles from "../../../resources/styles";
 
+const { size, opacity } = styles.iconButton;
+
 const StyledTouchable = styled.TouchableOpacity`
   align-items: center;
+  align-self: stretch;
+  flex: 1;
   justify-content: center;
 `;
 StyledTouchable.displayName = "Touchable";
@@ -19,14 +23,10 @@ export interface IProps {
 const IconButton = ({
   iconName,
   onClick,
-  iconColor = styles.icon.color
+  iconColor = styles.iconButton.color
 }: IProps) => (
-  <StyledTouchable onPress={onClick} activeOpacity={styles.button.opacity}>
-    <MaterialCommunityIcons
-      name={iconName}
-      size={styles.icon.size.default}
-      color={iconColor}
-    />
+  <StyledTouchable onPress={onClick} activeOpacity={opacity}>
+    <MaterialCommunityIcons name={iconName} size={size} color={iconColor} />
   </StyledTouchable>
 );
 

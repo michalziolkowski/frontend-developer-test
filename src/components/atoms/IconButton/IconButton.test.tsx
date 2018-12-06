@@ -26,7 +26,7 @@ beforeEach(() => {
 describe("PROPS", () => {
   // TODO untestable due to enzyme bug on obtaining
   // default props for functional components
-  // it("*iconColor* is default icon color by default", () => {});
+  // it("*iconColor* is IconButton style color by default", () => {});
 });
 
 describe("RENDER", () => {
@@ -35,8 +35,9 @@ describe("RENDER", () => {
       expect(touchable.exists()).toBe(true);
     });
 
-    it("has activeOpacity set to default button opacity", () => {
-      expect(touchable.props()["activeOpacity"]).toEqual(styles.button.opacity);
+    it("has activeOpacity set to IconButton style opacity", () => {
+      const { opacity } = styles.iconButton;
+      expect(touchable.props()["activeOpacity"]).toEqual(opacity);
     });
   });
 
@@ -49,8 +50,9 @@ describe("RENDER", () => {
       expect(icon.props()["name"]).toEqual(props.iconName);
     });
 
-    it("has size set to default icon size", () => {
-      expect(icon.props()["size"]).toEqual(styles.icon.size.default);
+    it("has size set to IconButton style size", () => {
+      const { size } = styles.iconButton;
+      expect(icon.props()["size"]).toEqual(size);
     });
 
     it("has color set to *iconColor*", () => {
