@@ -35,6 +35,7 @@ const styles = {
     color: "#696969"
   },
   sliderIndicator: {
+    backgroundColor: "#000",
     opacity: 0.6,
     padding: 3,
     borderRadius: 2,

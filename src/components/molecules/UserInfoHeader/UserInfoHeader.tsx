@@ -7,12 +7,15 @@ import styles from "../../../resources/styles";
 import IconButton from "../../atoms/IconButton";
 import Text from "../../atoms/Text";
 
+const { height, paddingVertical, iconButtonSize } = styles.userInfoHeader;
+
 export const StyledHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-self: stretch;
-  padding-vertical: ${styles.userInfo.header.paddingVertical};
-  background-color: ${styles.userInfo.backgroundColor};
+  align-items: center;
+  height: ${height};
+  padding-vertical: ${paddingVertical};
 `;
 StyledHeader.displayName = "Header";
 
@@ -21,10 +24,12 @@ const HeaderView = styled.View`
   justify-content: center;
 `;
 
-const IconView = styled.View`
+export const IconView = styled.View`
   align-items: flex-end;
   justify-content: center;
   align-items: center;
+  height: ${iconButtonSize};
+  width: ${iconButtonSize};
 `;
 
 export interface IProps {
