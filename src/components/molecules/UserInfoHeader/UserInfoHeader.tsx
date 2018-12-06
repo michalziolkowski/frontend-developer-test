@@ -7,15 +7,13 @@ import styles from "../../../resources/styles";
 import IconButton from "../../atoms/IconButton";
 import Text from "../../atoms/Text";
 
-const { height, paddingVertical, iconButtonSize } = styles.userInfoHeader;
+const { iconButtonSize } = styles.userInfoHeader;
 
 export const StyledHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-self: stretch;
   align-items: center;
-  height: ${height};
-  padding-vertical: ${paddingVertical};
 `;
 StyledHeader.displayName = "Header";
 

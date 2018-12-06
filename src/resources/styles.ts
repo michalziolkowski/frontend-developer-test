@@ -58,12 +58,11 @@ const styles = {
     arrowIcon: "chevron-down",
     infoIcon: "information",
     springAnimationFriction: 6,
-    linearAnimationDuration: 200
+    linearAnimationDuration: 200,
+    headerHeight: 60
   },
   userInfoHeader: {
-    iconButtonSize: 50,
-    height: 60,
-    paddingVertical: 10
+    iconButtonSize: 50
   },
   userInfoDetails: {
     headerMargin: 20

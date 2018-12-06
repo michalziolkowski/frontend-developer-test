@@ -3,7 +3,11 @@ import React from "react";
 import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TestUtils from "../../../utils/TestUtils";
-import UserInfoHeader, { IProps, StyledHeader, IconView } from "./UserInfoHeader";
+import UserInfoHeader, {
+  IconView,
+  IProps,
+  StyledHeader
+} from "./UserInfoHeader";
 
 const { info } = MockUtils.mockUser;
 
@@ -129,18 +133,6 @@ describe("INTERACTION", () => {
 });
 
 describe("STYLE", () => {
-  describe("Header", () => {
-    it("has UserInfoHeader style height & paddingVertical", () => {
-      // given
-      const { height, paddingVertical } = styles.userInfoHeader;
-      const headerStyles = TestUtils.renderComponentStyles(<StyledHeader />);
-
-      // then
-      const expectedStyles = { paddingVertical, height };
-      expect(headerStyles).toMatchObject(expectedStyles);
-    });
-  });
-
   describe("IconView", () => {
     it("has UserInfoHeader style iconButtonSize", () => {
       // given
