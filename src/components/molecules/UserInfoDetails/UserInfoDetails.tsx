@@ -13,12 +13,12 @@ export interface IProps {
 
 const StyledView = styled.View`
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-self: stretch;
 `;
 
 export const TopMarginTextStyle = `margin-top: ${
-  styles.userInfo.details.header.margin
+  styles.userInfoDetails.headerMargin
 };`;
 
 const UserInfoDetails = (props: IProps) => {
@@ -26,6 +26,7 @@ const UserInfoDetails = (props: IProps) => {
 
   return (
     <StyledView>
+      <Text variant="h2">{strings.headerAbout}</Text>
       <Text>{about}</Text>
 
       <Text style={TopMarginTextStyle} variant="h2">

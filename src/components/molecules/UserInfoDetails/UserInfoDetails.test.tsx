@@ -14,6 +14,7 @@ const props: IProps = {
 
 /* Setup */
 let wrapper: ShallowWrapper<IProps>;
+let aboutHeaderText: ShallowWrapper;
 let aboutText: ShallowWrapper;
 let desiresHeaderText: ShallowWrapper;
 let desiresText: ShallowWrapper;
@@ -21,11 +22,12 @@ let interestsHeaderText: ShallowWrapper;
 let interestsText: ShallowWrapper;
 
 const updateWrappers = () => {
-  aboutText = wrapper.find("Text").at(0);
-  desiresHeaderText = wrapper.find("Text").at(1);
-  desiresText = wrapper.find("Text").at(2);
-  interestsHeaderText = wrapper.find("Text").at(3);
-  interestsText = wrapper.find("Text").at(4);
+  aboutHeaderText = wrapper.find("Text").at(0);
+  aboutText = wrapper.find("Text").at(1);
+  desiresHeaderText = wrapper.find("Text").at(2);
+  desiresText = wrapper.find("Text").at(3);
+  interestsHeaderText = wrapper.find("Text").at(4);
+  interestsText = wrapper.find("Text").at(5);
 };
 
 beforeEach(() => {
@@ -35,6 +37,16 @@ beforeEach(() => {
 
 /* Test Cases */
 describe("RENDER", () => {
+  describe("About Header Text", () => {
+    it("renders", () => {
+      expect(aboutHeaderText.exists()).toBe(true);
+    });
+
+    it("contains string for about header", () => {
+      expect(aboutHeaderText.contains(strings.headerAbout)).toBe(true);
+    });
+  });
+
   describe("About Text", () => {
     it("renders", () => {
       expect(aboutText.exists()).toBe(true);
@@ -56,7 +68,7 @@ describe("RENDER", () => {
 
     it("has user info details header style top margin", () => {
       expect(interestsHeaderText.props()["style"]).toEqual(
-        `margin-top: ${styles.userInfo.details.header.margin};`
+        `margin-top: ${styles.userInfoDetails.headerMargin};`
       );
     });
   });
@@ -83,7 +95,7 @@ describe("RENDER", () => {
 
     it("has user info details header style top margin", () => {
       expect(interestsHeaderText.props()["style"]).toEqual(
-        `margin-top: ${styles.userInfo.details.header.margin};`
+        `margin-top: ${styles.userInfoDetails.headerMargin};`
       );
     });
   });
