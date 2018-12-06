@@ -21,6 +21,7 @@
     "@types/react-native": "^0.57.7",
     "@types/react-native-vector-icons": "^4.6.4",
     "@types/react-test-renderer": "^16.0.3",
+    "@types/sinon": "^5.0.7",
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react-native": "^3.0.3",
     "babel-core": "^7.0.0-bridge.0",
@@ -32,6 +33,7 @@
     "jest-cli": "^23.6.0",
     "jest-expo": "31.0.0",
     "prettier": "1.15.3",
+    "react-native-expo-image-cache": "^3.2.0",
     "react-native-storybook-loader": "^1.8.0",
     "react-test-renderer": "^16.5.0",
     "redux": "^4.0.1",
@@ -47,6 +49,7 @@
     "react": "16.5.0",
     "react-dom": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
+    "sinon": "^7.1.1",
     "styled-components": "^4.1.2",
     "tslib": "^1.9.1",
     "tslint": "^5.11.0"
