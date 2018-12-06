@@ -34,12 +34,6 @@ describe("RENDER", () => {
     it("renders", () => {
       expect(indicator.exists()).toBe(true);
     });
-
-    it("has activeOpacity set to slider indicator opacity", () => {
-      expect(indicator.props()["activeOpacity"]).toEqual(
-        styles.sliderIndicator.opacity
-      );
-    });
   });
 
   describe("Points", () => {
@@ -61,16 +55,25 @@ describe("RENDER", () => {
 
 describe("STYLE", () => {
   describe("Indicator", () => {
-    it("has slider indicator style padding", () => {
+    it("has SliderIndicator style padding, opacity, backgroundColor & borderRadius ", () => {
       // given
+      const {
+        padding,
+        borderRadius,
+        opacity,
+        backgroundColor
+      } = styles.sliderIndicator;
       const indicatorStyles = TestUtils.renderComponentStyles(
         <StyledIndicator />
       );
 
       // then
       const expectedStyles = {
-        paddingVertical: styles.sliderIndicator.padding,
-        paddingHorizontal: styles.sliderIndicator.padding
+        borderRadius,
+        opacity,
+        backgroundColor,
+        paddingVertical: padding,
+        paddingHorizontal: padding
       };
       expect(indicatorStyles).toMatchObject(expectedStyles);
     });
@@ -78,40 +81,40 @@ describe("STYLE", () => {
 
   describe("Point", () => {
     describe("Active", () => {
-      it("has active slider indicator point style", () => {
+      it("has SliderIndicator style pointSize, pointMargin & pointColor for active point", () => {
         // given
+        const { pointSize, pointColor, pointMargin } = styles.sliderIndicator;
         const activePointStyles = TestUtils.renderComponentStyles(
           <StyledPoint isActive />
         );
 
         // then
-        const { size, color, margin } = styles.sliderIndicator.point;
         const expectedStyles = {
-          backgroundColor: color.active,
-          marginHorizontal: margin,
-          height: size.active,
-          width: size.active
+          backgroundColor: pointColor.active,
+          marginHorizontal: pointMargin,
+          height: pointSize.active,
+          width: pointSize.active
         };
         expect(activePointStyles).toMatchObject(expectedStyles);
       });
     });
 
     describe("Inctive", () => {
-      it("has inactive slider indicator point style", () => {
+      it("has SliderIndicator style pointSize, pointMargin & pointColor for inactive point", () => {
         // given
-        const activePointStyles = TestUtils.renderComponentStyles(
+        const { pointSize, pointColor, pointMargin } = styles.sliderIndicator;
+        const inactivePointStyles = TestUtils.renderComponentStyles(
           <StyledPoint isActive={false} />
         );
 
         // then
-        const { size, color, margin } = styles.sliderIndicator.point;
         const expectedStyles = {
-          backgroundColor: color.inactive,
-          marginHorizontal: margin,
-          height: size.inactive,
-          width: size.inactive
+          backgroundColor: pointColor.inactive,
+          marginHorizontal: pointMargin,
+          height: pointSize.inactive,
+          width: pointSize.inactive
         };
-        expect(activePointStyles).toMatchObject(expectedStyles);
+        expect(inactivePointStyles).toMatchObject(expectedStyles);
       });
     });
   });
