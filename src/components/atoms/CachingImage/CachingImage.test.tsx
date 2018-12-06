@@ -28,9 +28,7 @@ const updateWrappers = () => {
 };
 
 beforeEach(() => {
-  wrapper = shallow<IProps, IState>(<CachingImage {...props} />, {
-    lifecycleExperimental: true
-  });
+  wrapper = shallow<IProps, IState>(<CachingImage {...props} />);
   updateWrappers();
 });
 
