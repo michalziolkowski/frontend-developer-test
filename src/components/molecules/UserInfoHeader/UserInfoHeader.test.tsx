@@ -1,18 +1,13 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
+import routes from "../../../resources/routes";
 import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TestUtils from "../../../utils/TestUtils";
-import UserInfoHeader, {
-  IconView,
-  IProps,
-  StyledHeader
-} from "./UserInfoHeader";
-
-const { info } = MockUtils.mockUser;
+import { IconView, IProps, PureUserInfoHeader } from "./UserInfoHeader";
 
 const props: IProps = {
-  userInfo: info
+  user: MockUtils.mockUser
 };
 
 /* Setup */
@@ -30,7 +25,7 @@ const updateWrappers = () => {
 };
 
 beforeEach(() => {
-  wrapper = shallow<IProps>(<UserInfoHeader {...props} />);
+  wrapper = shallow<IProps>(<PureUserInfoHeader {...props} />);
   updateWrappers();
 });
 
@@ -39,6 +34,13 @@ describe("RENDER", () => {
   describe("Header Touchable", () => {
     it("renders", () => {
       expect(headerTouchable.exists()).toBe(true);
+    });
+
+    it("has opacity set to style headerLinkOpacity", () => {
+      const { headerLinkOpacity } = styles.userInfoHeader;
+      expect(headerTouchable.props()["activeOpacity"]).toEqual(
+        headerLinkOpacity
+      );
     });
   });
 
@@ -52,7 +54,7 @@ describe("RENDER", () => {
     });
 
     it("contains user name & age text", () => {
-      const { name, age } = info;
+      const { name, age } = props.user.info;
       expect(headerText.contains(`${name}, ${age}`)).toBe(true);
     });
   });
@@ -67,7 +69,7 @@ describe("RENDER", () => {
     });
 
     it("contains user sexuality, gender & type text", () => {
-      const { sexuality, gender, type } = info;
+      const { sexuality, gender, type } = props.user.info;
       expect(subheaderText.contains(`${sexuality} ${gender}, ${type}`)).toBe(
         true
       );
@@ -99,10 +101,11 @@ describe("RENDER", () => {
 
 describe("INTERACTION", () => {
   describe("Header Touchable", () => {
-    it("on press calls *onHeaderClick*", () => {
+    it("on press calls *navigation* to user details route with user.localId as param", () => {
       // given
-      const onHeaderClick = jest.fn();
-      wrapper.setProps({ onHeaderClick });
+      const navigation = { navigate: jest.fn() };
+      // @ts-ignore
+      wrapper.setProps({ navigation });
       wrapper.update();
       updateWrappers();
 
@@ -110,7 +113,9 @@ describe("INTERACTION", () => {
       headerTouchable.props()["onPress"]();
 
       // then
-      expect(onHeaderClick).toBeCalledTimes(1);
+      expect(navigation.navigate).toBeCalledWith(routes.userDetails, {
+        id: props.user.localId
+      });
     });
   });
 

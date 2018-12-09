@@ -9,17 +9,17 @@ import MockUtils from "../../../utils/MockUtils";
 storiesOf("molecules/UserInfoHeader", module)
   .addDecorator(withKnobs)
   .add("default", () => (
-    <UserInfoHeader userInfo={object("userInfo", MockUtils.mockUser.info)} />
+    <UserInfoHeader user={object("user", MockUtils.mockUser)} />
   ))
   .add("with information icon", () => (
     <UserInfoHeader
-      userInfo={object("userInfo", MockUtils.mockUser.info)}
+      user={object("user", MockUtils.mockUser)}
       icon={text("icon", "information")}
     />
   ))
   .add("with down arrow icon", () => (
     <UserInfoHeader
-      userInfo={object("userInfo", MockUtils.mockUser.info)}
+      user={object("user", MockUtils.mockUser)}
       icon={text("icon", "chevron-down")}
     />
   ));

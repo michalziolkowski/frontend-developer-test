@@ -1,18 +1,21 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import { NavigationScreenProp, withNavigation } from "react-navigation";
 // @ts-ignore
 import styled from "styled-components/native";
-import { IUserInfo } from "../../../resources/model";
+import { IUser } from "../../../resources/model";
+import routes from "../../../resources/routes";
 import styles from "../../../resources/styles";
 import IconButton from "../../atoms/IconButton";
 import Text from "../../atoms/Text";
 
-const { iconButtonSize } = styles.userInfoHeader;
+const { iconButtonSize, headerLinkOpacity } = styles.userInfoHeader;
 
 export const StyledHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-self: stretch;
+  flex: 1;
   align-items: center;
 `;
 StyledHeader.displayName = "Header";
@@ -31,14 +34,15 @@ export const IconView = styled.View`
 `;
 
 export interface IProps {
-  userInfo: IUserInfo;
+  user: IUser;
   icon?: string;
   onIconClick?: () => void;
-  onHeaderClick?: () => void;
+  navigation?: NavigationScreenProp<any, any>;
 }
 
-const UserInfoHeader = (props: IProps) => {
-  const { icon, onIconClick, userInfo, onHeaderClick } = props;
+export const PureUserInfoHeader = (props: IProps) => {
+  const { icon, onIconClick, user } = props;
+
   const renderDetailsIcon = () =>
     icon && (
       <IconView>
@@ -46,11 +50,20 @@ const UserInfoHeader = (props: IProps) => {
       </IconView>
     );
 
-  const { name, age, type, gender, sexuality } = userInfo;
+  const onHeaderClick = () => {
+    if (props.navigation) {
+      props.navigation.navigate(routes.userDetails, { id: user.localId });
+    }
+  };
+
+  const { name, age, type, gender, sexuality } = user.info;
 
   return (
     <StyledHeader>
-      <TouchableOpacity onPress={onHeaderClick}>
+      <TouchableOpacity
+        activeOpacity={headerLinkOpacity}
+        onPress={onHeaderClick}
+      >
         <HeaderView>
           <Text variant="h1">{`${name}, ${age}`}</Text>
 
@@ -63,4 +76,4 @@ const UserInfoHeader = (props: IProps) => {
   );
 };
 
-export default UserInfoHeader;
+export default withNavigation(PureUserInfoHeader);
