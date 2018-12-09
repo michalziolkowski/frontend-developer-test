@@ -1,8 +1,16 @@
 export interface IUser {
   id: string;
+  localId: string;
   info: IUserInfo;
-  associated?: IUser;
+  associated?: IAssociated;
   photos: IImage[];
+}
+
+export interface IAssociated {
+  age: number;
+  gender: string;
+  sexuality: string;
+  name: string;
 }
 
 export interface IUserInfo {
@@ -12,8 +20,8 @@ export interface IUserInfo {
   sexuality: string;
   name: string;
   about: string;
-  desires: string[];
-  interests: string[];
+  desires?: string[];
+  interests?: string[];
 }
 
 export interface IImage {

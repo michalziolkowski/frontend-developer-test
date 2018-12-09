@@ -1,3 +1,7 @@
+import { Dimensions } from "react-native";
+
+const screenWidth = Dimensions.get("window").width;
+
 const styles = {
   text: {
     color: {
@@ -19,15 +23,17 @@ const styles = {
       h3: "normal"
     }
   },
-  coupleButton: {
-    opacity: 0.6,
-    size: 60,
+  associatedButton: {
+    activeOpacity: 0.6,
+    size: 40,
+    iconSize: 28,
+    iconName: "information-variant",
+    backgroundColor: "#888",
     borderColor: "#ef4200",
     borderWidth: 2,
-    iconOffset: -3,
-    iconName: "heart",
-    iconSize: 22,
-    iconColor: "#ef4200"
+    borderIconOffset: -5,
+    borderIconName: "heart",
+    borderIconSize: 22
   },
   iconButton: {
     opacity: 0.6,
@@ -49,26 +55,35 @@ const styles = {
       inactive: "#303030"
     }
   },
+  userDetails: {
+    headerHeight: 80,
+    padding: 10,
+    coupleButtonOffset: 25
+  },
   userCard: {
-    backgroundColor: "#fff",
-    borderRadius: 2,
-    widthRatio: 0.85,
-    coupleButtonOffset: 15,
+    width: screenWidth * 0.95,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    headerOffset: 5,
+    widthRatio: 0.95,
+    associatedButtonOffset: 15,
     padding: 10,
     arrowIcon: "chevron-down",
     infoIcon: "information",
     springAnimationFriction: 6,
     linearAnimationDuration: 200,
-    headerHeight: 60
+    headerHeight: screenWidth * 0.95 * 0.2
   },
   userInfoHeader: {
+    headerLinkOpacity: 0.6,
     iconButtonSize: 50
   },
   userInfoDetails: {
     headerMargin: 20
   },
   imageSlider: {
-    borderRadius: 2,
     indicatorOffset: 10,
     backgroundColor: "#666"
   }
