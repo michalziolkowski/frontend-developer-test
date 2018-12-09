@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 // @ts-ignore
 import styled from "styled-components/native";
 import { IImage } from "../../../resources/model";
@@ -7,14 +7,12 @@ import styles from "../../../resources/styles";
 import CachingImage from "../../atoms/CachingImage";
 import SliderIndicator from "../../atoms/SliderIndicator";
 
-const { borderRadius, backgroundColor, indicatorOffset } = styles.imageSlider;
+const { backgroundColor, indicatorOffset } = styles.imageSlider;
 
 export const StyledTouchable = styled.View`
   align-self: center;
   align-items: center;
   justify-content: center;
-  border-radius: ${borderRadius};
-  overflow: hidden;
   background-color: ${backgroundColor};
 `;
 
@@ -44,24 +42,31 @@ class ImageSlider extends React.PureComponent<IProps, IState> {
     };
   }
 
-  public render = () => {
+  public render = () => (
+    <TouchableWithoutFeedback onPress={this.onTouchablePress}>
+      <StyledTouchable>{this.renderSlider()}</StyledTouchable>
+    </TouchableWithoutFeedback>
+  );
+
+  private renderSlider = () => {
+    const { viewSize, images } = this.props;
     const { count, index } = this.state;
-    const { images, viewSize } = this.props;
+    if (count === 0) {
+      return <View style={{ height: viewSize, width: viewSize }} />;
+    }
 
     return (
-      <TouchableWithoutFeedback onPress={this.onTouchablePress}>
-        <StyledTouchable>
-          <CachingImage
-            url={images[index].url}
-            nextUrl={images[this.getNextIndex()].url}
-            viewSize={viewSize}
-          />
+      <>
+        <CachingImage
+          url={images[index].url}
+          nextUrl={images[this.getNextIndex()].url}
+          viewSize={viewSize}
+        />
 
-          <IndicatorView>
-            <SliderIndicator count={count} index={index} />
-          </IndicatorView>
-        </StyledTouchable>
-      </TouchableWithoutFeedback>
+        <IndicatorView>
+          <SliderIndicator count={count} index={index} />
+        </IndicatorView>
+      </>
     );
   };
 

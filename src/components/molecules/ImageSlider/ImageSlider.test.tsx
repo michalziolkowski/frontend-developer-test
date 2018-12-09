@@ -1,5 +1,6 @@
 import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
+import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TestUtils from "../../../utils/TestUtils";
 import ImageSlider, {
@@ -8,7 +9,6 @@ import ImageSlider, {
   IState,
   StyledTouchable
 } from "./ImageSlider";
-import styles from "../../../resources/styles";
 
 const props: IProps = {
   viewSize: 50,
@@ -112,21 +112,21 @@ describe("INTERACTION", () => {
 
 describe("STYLE", () => {
   describe("StyledTouchable", () => {
-    it("has ImageSlider style borderRadius & backgroundColor", () => {
+    it("has style backgroundColor", () => {
       // given
-      const { borderRadius, backgroundColor } = styles.imageSlider;
+      const { backgroundColor } = styles.imageSlider;
       const touchableStyles = TestUtils.renderComponentStyles(
         <StyledTouchable />
       );
 
       // then
-      const expectedStyles = { borderRadius, backgroundColor };
+      const expectedStyles = { backgroundColor };
       expect(touchableStyles).toMatchObject(expectedStyles);
     });
   });
 
   describe("IndicatorView", () => {
-    it("has ImageSlider style indicatorOffset", () => {
+    it("has style indicatorOffset", () => {
       // given
       const { indicatorOffset } = styles.imageSlider;
       const indicatorStyles = TestUtils.renderComponentStyles(

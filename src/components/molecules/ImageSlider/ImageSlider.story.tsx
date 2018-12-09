@@ -1,3 +1,4 @@
+import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
 // @ts-ignore
@@ -6,5 +7,8 @@ import MockUtils from "../../../utils/MockUtils";
 import ImageSlider from "./ImageSlider";
 
 storiesOf("molecules/ImageSlider", module).add("default", () => (
-  <ImageSlider images={MockUtils.mockUser.photos} />
+  <ImageSlider
+    images={MockUtils.mockUser.photos}
+    viewSize={number("viewSize", 50)}
+  />
 ));
