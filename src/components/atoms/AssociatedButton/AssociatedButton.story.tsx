@@ -4,10 +4,7 @@ import React from "react";
 // @ts-ignore
 import styled from "styled-components/native";
 import AssociatedButton from ".";
-import MockUtils from "../../../utils/MockUtils";
 
 storiesOf("atoms/AssociatedButton", module)
   .addDecorator(withKnobs)
-  .add("default", () => (
-    <AssociatedButton associated={MockUtils.mockAssociated} />
-  ));
+  .add("default", () => <AssociatedButton />);

@@ -19,10 +19,21 @@ export interface IProps {
   variant?: TextVariant;
   children: string;
   style?: string;
+  numberOfLines?: number;
 }
 
-const Text = ({ variant = "default", children, style }: IProps) => (
-  <StyledText variant={variant} children={children} style={style} />
+const Text = ({
+  variant = "default",
+  children,
+  style,
+  numberOfLines
+}: IProps) => (
+  <StyledText
+    numberOfLines={numberOfLines}
+    variant={variant}
+    children={children}
+    style={style}
+  />
 );
 
 export default Text;

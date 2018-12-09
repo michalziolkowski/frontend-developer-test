@@ -10,9 +10,13 @@ const testText = "test-text";
 let wrapper: ShallowWrapper<IProps>;
 let text: ShallowWrapper;
 
+const updateWrappers = () => {
+  text = wrapper.find("Text");
+};
+
 beforeEach(() => {
   wrapper = shallow<IProps>(<Text>{testText}</Text>);
-  text = wrapper.find("Text");
+  updateWrappers();
 });
 
 /* Test Cases */
@@ -26,6 +30,17 @@ describe("RENDER", () => {
   describe("Text", () => {
     it("renders", () => {
       expect(text.exists()).toBe(true);
+    });
+
+    it("has number of lines set to *numberOfLines*", () => {
+      // given
+      const numberOfLines = 3;
+      wrapper.setProps({ numberOfLines });
+      wrapper.update();
+      updateWrappers();
+
+      // then
+      expect(text.props()["numberOfLines"]).toEqual(numberOfLines);
     });
 
     it("contains *children* text", () => {
