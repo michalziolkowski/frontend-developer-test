@@ -76,4 +76,6 @@ export const PureUserInfoHeader = (props: IProps) => {
   );
 };
 
-export default withNavigation(PureUserInfoHeader);
+const UserInfoHeader = withNavigation(PureUserInfoHeader);
+UserInfoHeader.displayName = "UserInfoHeader";
+export default UserInfoHeader;

@@ -1,28 +1,32 @@
 import React from "react";
-import { Animated, Dimensions, Easing } from "react-native";
-// @ts-ignore
-import styled from "styled-components/native";
+import { Animated, Easing } from "react-native";
 import { IUser } from "../../../resources/model";
 import styles from "../../../resources/styles";
-import CoupleButton from "../../atoms/CoupleButton";
+import AssociatedButton from "../../atoms/AssociatedButton";
 import ImageSlider from "../../molecules/ImageSlider";
 import UserInfoDetails from "../../molecules/UserInfoDetails";
 import UserInfoHeader from "../../molecules/UserInfoHeader";
+import {
+  AssociatedButtonAnimStyles,
+  HeaderView,
+  SliderView,
+  StyledCard,
+  StyledUserInfoDetails,
+  UserInfoAnimStyles
+} from "./styled";
 
 const {
-  widthRatio,
+  width,
   padding,
-  backgroundColor,
-  borderRadius,
   arrowIcon,
   infoIcon,
   springAnimationFriction,
   linearAnimationDuration,
-  coupleButtonOffset,
-  headerHeight
+  headerOffset
 } = styles.userCard;
 
-const componentWidth = Dimensions.get("window").width * widthRatio;
+export const ASSOCIATED_BTN_ANIM_ID = "associated-btn-anim";
+export const USER_INFO_ANIM_ID = "user-info-anim";
 
 export interface IProps {
   user: IUser;
@@ -30,91 +34,63 @@ export interface IProps {
 
 export interface IState {
   isShowingDetails: boolean;
+  userInfoAnimValue: Animated.Value;
 }
 
-export const StyledCard = styled.View`
-  padding-horizontal: ${padding};
-  padding-vertical: ${padding};
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  background-color: ${backgroundColor};
-  border-radius: ${borderRadius};
-  overflow: hidden;
-`;
-
-export const StyledScrollView = styled.ScrollView`
-  margin-vertical: ${padding};
-`;
-StyledScrollView.displayName = "ScrollView";
-
-export const SliderView = styled.View(
-  (props: { size: number }) => `
-  margin-bottom: ${headerHeight};
-  height: ${props.size};
-`
-);
-
-export const HeaderView = styled.View`
-  height: ${headerHeight};
-  padding-vertical: ${padding};
-`;
-
 class UserCard extends React.PureComponent<IProps, IState> {
-  private yTranslate: Animated.Value;
-
   constructor(props: IProps) {
     super(props);
 
-    this.yTranslate = new Animated.Value(0);
-
-    this.state = { isShowingDetails: false };
+    this.state = {
+      isShowingDetails: false,
+      userInfoAnimValue: new Animated.Value(0)
+    };
   }
 
   public render = () => {
-    const { info, photos } = this.props.user;
+    const { user } = this.props;
+    const { info, photos } = user;
     const { isShowingDetails } = this.state;
+
+    const headerIcon = isShowingDetails ? arrowIcon : infoIcon;
 
     return (
       <StyledCard>
-        <SliderView size={componentWidth}>
-          <ImageSlider images={photos} viewSize={componentWidth} />
+        <SliderView>
+          <ImageSlider images={photos} viewSize={width} />
         </SliderView>
 
-        {this.renderCoupleButton()}
+        {this.renderAssociatedButton()}
 
         <Animated.View
-          id="userInfoAnim"
+          id={USER_INFO_ANIM_ID}
           style={{
             ...this.userInfoAnimTranslateStyles(),
-            backgroundColor,
-            position: "absolute",
-            height: componentWidth + headerHeight + padding,
-            width: componentWidth,
-            bottom: -componentWidth
+            ...UserInfoAnimStyles
           }}
         >
           <HeaderView>
             <UserInfoHeader
-              userInfo={info}
-              icon={isShowingDetails ? arrowIcon : infoIcon}
+              user={user}
+              icon={headerIcon}
               onIconClick={this.onDetailsClick}
-              onHeaderClick={this.onHeaderClick}
             />
           </HeaderView>
 
-          <StyledScrollView>
-            <UserInfoDetails userInfo={info} />
-          </StyledScrollView>
+          <StyledUserInfoDetails>
+            <UserInfoDetails userInfo={info} showPartialAbout />
+          </StyledUserInfoDetails>
         </Animated.View>
       </StyledCard>
     );
   };
 
   private userInfoAnimTranslateStyles = () => {
-    const negativeHeight = -componentWidth - padding;
+    const { userInfoAnimValue } = this.state;
 
-    const detailsMoveY = this.yTranslate.interpolate({
+    const negativeHeight = -width + headerOffset;
+
+    const detailsMoveY = userInfoAnimValue.interpolate({
       inputRange: [0, 1],
       outputRange: [0, negativeHeight]
     });
@@ -122,11 +98,12 @@ class UserCard extends React.PureComponent<IProps, IState> {
     return { transform: [{ translateY: detailsMoveY }] };
   };
 
-  private coupleButtonAnimTranslateStyles = () => {
-    const { size } = styles.coupleButton;
+  private associatedButtonAnimTranslateStyles = () => {
+    const { userInfoAnimValue } = this.state;
+    const { size } = styles.associatedButton;
 
-    const moveY = this.yTranslate.interpolate({
-      inputRange: [0, 0.5, 1],
+    const moveY = userInfoAnimValue.interpolate({
+      inputRange: [0, 0.3, 1],
       outputRange: [0, 0, -size - padding * 2]
     });
 
@@ -134,16 +111,17 @@ class UserCard extends React.PureComponent<IProps, IState> {
   };
 
   private onDetailsClick = () => {
-    const { isShowingDetails } = this.state;
+    const { isShowingDetails, userInfoAnimValue } = this.state;
 
     if (!isShowingDetails) {
-      this.yTranslate.setValue(0);
-      Animated.spring(this.yTranslate, {
+      userInfoAnimValue.setValue(0);
+
+      Animated.spring(userInfoAnimValue, {
         toValue: 1,
         friction: springAnimationFriction
       }).start();
     } else {
-      Animated.timing(this.yTranslate, {
+      Animated.timing(userInfoAnimValue, {
         toValue: 0,
         duration: linearAnimationDuration,
         easing: Easing.linear
@@ -153,28 +131,20 @@ class UserCard extends React.PureComponent<IProps, IState> {
     this.setState({ isShowingDetails: !isShowingDetails });
   };
 
-  private onHeaderClick = () => {
-    // TODO open User Details
-  };
-
-  private renderCoupleButton = () => {
+  private renderAssociatedButton = () => {
     const { associated } = this.props.user;
 
-    if (!associated || associated.photos.length < 1) return null;
-
-    return (
+    return associated ? (
       <Animated.View
-        id="coupleButtonAnim"
+        id={ASSOCIATED_BTN_ANIM_ID}
         style={{
-          ...this.coupleButtonAnimTranslateStyles(),
-          position: "absolute",
-          top: coupleButtonOffset,
-          left: coupleButtonOffset
+          ...this.associatedButtonAnimTranslateStyles(),
+          ...AssociatedButtonAnimStyles
         }}
       >
-        <CoupleButton uri={associated.photos[0].url} />
+        <AssociatedButton />
       </Animated.View>
-    );
+    ) : null;
   };
 }
 
