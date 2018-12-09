@@ -1,3 +1,16 @@
-import Storybook from "./storybook";
+import React from "react";
+import { Provider } from "react-redux";
+import Root from "./components/Root";
+import StoreUtils from "./utils/StoreUtils";
 
-export default Storybook;
+const App = () => {
+  const store = StoreUtils.configureStore();
+
+  return (
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  );
+};
+
+export default App;
