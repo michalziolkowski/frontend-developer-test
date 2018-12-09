@@ -13,6 +13,7 @@ import { IUser } from "../../../resources/model";
 import styles from "../../../resources/styles";
 import UserCard from "../UserCard";
 import {
+  CardContainer,
   CardShadowOptions,
   IconStyles,
   StyledCard,
@@ -117,7 +118,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
       return <BoxShadow setting={shadowOpt}>{userCard}</BoxShadow>;
     }
 
-    return userCard;
+    return <CardContainer>{userCard}</CardContainer>;
   };
 
   private renderStatusIcon = (status: Status) => {
@@ -133,6 +134,8 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
       />
     );
   };
+
+  /** Layout callback */
 
   private onCardLayoutChange = (event: LayoutChangeEvent) => {
     const { cardSize } = this.state;

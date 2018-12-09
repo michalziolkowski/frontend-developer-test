@@ -1,7 +1,7 @@
+import { StyleProp, TextStyle } from "react-native";
 // @ts-ignore
 import styled from "styled-components/native";
 import styles from "../../../resources/styles";
-import { StyleProp, TextStyle } from "react-native";
 
 const { itemOpacity, iconBottomPadding } = styles.userListItem;
 
@@ -18,6 +18,11 @@ export const StyledCard = styled.View(
 export const StyledListItem = styled.View`
   justify-content: center;
   align-items: center;
+`;
+
+export const CardContainer = styled.View`
+  margin-horizontal: 10;
+  margin-vertical: 10;
 `;
 
 export const CardShadowOptions = {
