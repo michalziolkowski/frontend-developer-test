@@ -22,12 +22,12 @@ let interestsHeaderText: ShallowWrapper;
 let interestsText: ShallowWrapper;
 
 const updateWrappers = () => {
-  aboutHeaderText = wrapper.find("Text").at(0);
-  aboutText = wrapper.find("Text").at(1);
-  desiresHeaderText = wrapper.find("Text").at(2);
-  desiresText = wrapper.find("Text").at(3);
-  interestsHeaderText = wrapper.find("Text").at(4);
-  interestsText = wrapper.find("Text").at(5);
+  aboutHeaderText = wrapper.find('[id="aboutHeader"]');
+  aboutText = wrapper.find('[id="about"]');
+  desiresHeaderText = wrapper.find('[id="desiresHeader"]');
+  desiresText = wrapper.find('[id="desires"]');
+  interestsHeaderText = wrapper.find('[id="interestsHeader"]');
+  interestsText = wrapper.find('[id="interests"]');
 };
 
 beforeEach(() => {
@@ -55,9 +55,37 @@ describe("RENDER", () => {
     it("contains *userInfo.about* text ", () => {
       expect(aboutText.contains(info.about)).toBe(true);
     });
+
+    it("if *showPartialAbout* - has number of lines set to 7", () => {
+      // given
+      wrapper.setProps({ showPartialAbout: true });
+      wrapper.update();
+      updateWrappers();
+
+      // then
+      expect(aboutText.props()["numberOfLines"]).toEqual(7);
+    });
   });
 
   describe("Desires Header Text", () => {
+    it("if undefined *userInfo.desires* - doesn't render", () => {
+      // given
+      const userInfo = {
+        age: 40,
+        type: "Single",
+        gender: "Male",
+        sexuality: "Straight",
+        name: "Nickey",
+        about: `Lorem ipsum dolor sit amet`,
+        interests: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Conse"]
+      };
+      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      updateWrappers();
+
+      // then
+      expect(desiresHeaderText.exists()).toBe(false);
+    });
+
     it("renders", () => {
       expect(desiresHeaderText.exists()).toBe(true);
     });
@@ -67,13 +95,31 @@ describe("RENDER", () => {
     });
 
     it("has user info details header style top margin", () => {
-      expect(interestsHeaderText.props()["style"]).toEqual(
+      expect(desiresHeaderText.props()["style"]).toEqual(
         `margin-top: ${styles.userInfoDetails.headerMargin};`
       );
     });
   });
 
   describe("Desires Text", () => {
+    it("if undefined *userInfo.desires* - doesn't render", () => {
+      // given
+      const userInfo = {
+        age: 40,
+        type: "Single",
+        gender: "Male",
+        sexuality: "Straight",
+        name: "Nickey",
+        about: `Lorem ipsum dolor sit amet`,
+        interests: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Conse"]
+      };
+      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      updateWrappers();
+
+      // then
+      expect(desiresText.exists()).toBe(false);
+    });
+
     it("renders", () => {
       expect(desiresText.exists()).toBe(true);
     });
@@ -85,6 +131,23 @@ describe("RENDER", () => {
   });
 
   describe("Interests Header Text", () => {
+    it("if undefined *userInfo.interests* - doesn't render", () => {
+      // given
+      const userInfo = {
+        age: 40,
+        type: "Single",
+        gender: "Male",
+        sexuality: "Straight",
+        name: "Nickey",
+        about: `Lorem ipsum dolor sit amet`
+      };
+      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      updateWrappers();
+
+      // then
+      expect(interestsHeaderText.exists()).toBe(false);
+    });
+
     it("renders", () => {
       expect(interestsHeaderText.exists()).toBe(true);
     });
@@ -101,6 +164,23 @@ describe("RENDER", () => {
   });
 
   describe("Interests Text", () => {
+    it("if undefined *userInfo.interests* - doesn't render", () => {
+      // given
+      const userInfo = {
+        age: 40,
+        type: "Single",
+        gender: "Male",
+        sexuality: "Straight",
+        name: "Nickey",
+        about: `Lorem ipsum dolor sit amet`
+      };
+      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      updateWrappers();
+
+      // then
+      expect(interestsText.exists()).toBe(false);
+    });
+
     it("renders", () => {
       expect(interestsText.exists()).toBe(true);
     });

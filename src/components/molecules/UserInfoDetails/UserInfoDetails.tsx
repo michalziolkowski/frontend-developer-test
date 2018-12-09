@@ -9,37 +9,76 @@ import Text from "../../atoms/Text";
 
 export interface IProps {
   userInfo: IUserInfo;
+  showPartialAbout?: boolean;
 }
 
 const StyledView = styled.View`
   flex-direction: column;
-  justify-content: flex-start;
+  flex: 1;
   align-self: stretch;
+  justify-content: space-between;
+`;
+
+const AboutView = styled.View`
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: flex-end;
+`;
+
+const SectionsView = styled.View`
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: flex-end;
 `;
 
 export const TopMarginTextStyle = `margin-top: ${
   styles.userInfoDetails.headerMargin
 };`;
 
-const UserInfoDetails = (props: IProps) => {
-  const { about, desires, interests } = props.userInfo;
+const UserInfoDetails = ({ showPartialAbout = false, userInfo }: IProps) => {
+  const { about, desires, interests } = userInfo;
+
+  const renderUserInfoDesires = () =>
+    desires && (
+      <>
+        <Text id="desiresHeader" style={TopMarginTextStyle} variant="h2">
+          {strings.headerDesires}
+        </Text>
+
+        <Text id="desires">{TextUtils.getFormattedStringList(desires)}</Text>
+      </>
+    );
+
+  const renderUserInfoInterests = () =>
+    interests && (
+      <>
+        <Text id="interestsHeader" style={TopMarginTextStyle} variant="h2">
+          {strings.headerInterests}
+        </Text>
+
+        <Text id="interests">
+          {TextUtils.getFormattedStringList(interests)}
+        </Text>
+      </>
+    );
 
   return (
     <StyledView>
-      <Text variant="h2">{strings.headerAbout}</Text>
-      <Text>{about}</Text>
+      <AboutView>
+        <Text id="aboutHeader" variant="h2">
+          {strings.headerAbout}
+        </Text>
 
-      <Text style={TopMarginTextStyle} variant="h2">
-        {strings.headerDesires}
-      </Text>
+        <Text id="about" numberOfLines={showPartialAbout ? 7 : undefined}>
+          {about}
+        </Text>
+      </AboutView>
 
-      <Text>{TextUtils.getFormattedStringList(desires)}</Text>
+      <SectionsView>
+        {renderUserInfoDesires()}
 
-      <Text style={TopMarginTextStyle} variant="h2">
-        {strings.headerInterests}
-      </Text>
-
-      <Text>{TextUtils.getFormattedStringList(interests)}</Text>
+        {renderUserInfoInterests()}
+      </SectionsView>
     </StyledView>
   );
 };
