@@ -43,6 +43,17 @@ describe("RENDER", () => {
       expect(text.props()["numberOfLines"]).toEqual(numberOfLines);
     });
 
+    it("has id set to *id*", () => {
+      // given
+      const id = "id";
+      wrapper.setProps({ id });
+      wrapper.update();
+      updateWrappers();
+
+      // then
+      expect(text.props()["id"]).toEqual(id);
+    });
+
     it("contains *children* text", () => {
       expect(text.contains(testText)).toBe(true);
     });

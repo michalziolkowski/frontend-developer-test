@@ -19,16 +19,19 @@ export interface IProps {
   variant?: TextVariant;
   children: string;
   style?: string;
+  id?: string;
   numberOfLines?: number;
 }
 
 const Text = ({
   variant = "default",
   children,
+  id,
   style,
   numberOfLines
 }: IProps) => (
   <StyledText
+    id={id}
     numberOfLines={numberOfLines}
     variant={variant}
     children={children}
