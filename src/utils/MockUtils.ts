@@ -3,7 +3,7 @@ import { IUser } from "../resources/model";
 const mockUsers: IUser[] = [
   {
     id: "1",
-    localId: "",
+    localId: "1",
     info: {
       age: 40,
       type: "Single",
@@ -28,7 +28,7 @@ const mockUsers: IUser[] = [
   },
   {
     id: "2",
-    localId: "",
+    localId: "2",
     info: {
       age: 26,
       type: "Single",
@@ -53,7 +53,7 @@ const mockUsers: IUser[] = [
   },
   {
     id: "3",
-    localId: "",
+    localId: "3",
     info: {
       age: 40,
       type: "Single",
@@ -77,7 +77,7 @@ const mockUsers: IUser[] = [
   },
   {
     id: "4",
-    localId: "",
+    localId: "4",
     info: {
       age: 26,
       type: "Single",
@@ -102,7 +102,7 @@ const mockUsers: IUser[] = [
   },
   {
     id: "5",
-    localId: "",
+    localId: "5",
     info: {
       age: 40,
       type: "Single",
@@ -126,7 +126,7 @@ const mockUsers: IUser[] = [
   },
   {
     id: "6",
-    localId: "",
+    localId: "6",
     info: {
       age: 26,
       type: "Single",

@@ -1,4 +1,4 @@
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -60,6 +60,10 @@ const styles = {
     headerHeight: 80,
     padding: 10,
     associatedButtonOffset: 25
+  },
+  userList: {
+    initialItemHeight: screenWidth + screenWidth * 0.95 * 0.2,
+    viewPosition: 0.5
   },
   userListItem: {
     itemOpacity: {

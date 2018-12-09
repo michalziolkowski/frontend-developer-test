@@ -157,7 +157,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
       this.setState({ swipingStatus: newswipingStatus });
     }
 
-    const newX = gestureState.dx + 1;
+    const newX = gestureState.dx + 3;
     positionAnimValue.setValue({ x: newX, y: 0 });
   };
 
@@ -167,7 +167,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     const willConsumeGesture =
       !status &&
       !(Math.abs(gestureState.dy) > 7) &&
-      !(Math.abs(gestureState.dx) < 1);
+      !(Math.abs(gestureState.dx) < 3);
 
     if (!willConsumeGesture) {
       this.onGestureEnd(gestureState);
