@@ -61,6 +61,22 @@ const styles = {
     padding: 10,
     associatedButtonOffset: 25
   },
+  userListItem: {
+    itemOpacity: {
+      default: 1,
+      withStatus: 0.3
+    },
+    iconName: {
+      like: "heart",
+      reject: "close"
+    },
+    iconColor: {
+      like: "#fc4600",
+      reject: "#bc3e3e"
+    },
+    iconSize: 260,
+    iconBottomPadding: (screenWidth * 0.95 * 0.2) / 2
+  },
   userCard: {
     width: screenWidth * 0.95,
     backgroundColor: "#eee",
