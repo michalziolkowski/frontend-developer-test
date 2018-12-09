@@ -25,13 +25,16 @@ interface IProps {
   user: IUser;
 }
 
+type Status = "rejected" | "liked";
+type SwipingStatus = "left" | "right" | "idle";
+
 interface IState {
   cardSize: {
     width: number;
     height: number;
   };
-  status?: "rejected" | "liked";
-  swipingDir: "left" | "right" | "idle";
+  status?: Status;
+  swipingStatus: SwipingStatus;
   positionAnimValue: Animated.ValueXY;
   panResponder: PanResponderInstance;
 }
@@ -55,16 +58,22 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     this.state = {
       panResponder,
       positionAnimValue: new Animated.ValueXY(),
-      swipingDir: "idle",
+      swipingStatus: "idle",
       cardSize: { width: 0, height: 0 }
     };
   }
 
   public render = () => {
-    const { swipingDir, status, panResponder, positionAnimValue } = this.state;
+    const {
+      swipingStatus,
+      status,
+      panResponder,
+      positionAnimValue
+    } = this.state;
 
-    const renderBackgroundIcon = swipingDir !== "idle";
-    const backgroundIconStatus = swipingDir === "right" ? "liked" : "rejected";
+    const renderBackgroundIcon = swipingStatus !== "idle";
+    const backgroundIconStatus =
+      swipingStatus === "right" ? "liked" : "rejected";
 
     return (
       <StyledListItem>
@@ -111,7 +120,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     return userCard;
   };
 
-  private renderStatusIcon = (status: "liked" | "rejected") => {
+  private renderStatusIcon = (status: Status) => {
     const name = status === "liked" ? iconName.like : iconName.reject;
     const color = status === "liked" ? iconColor.like : iconColor.reject;
 
@@ -138,11 +147,11 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
   /** Gesture respond */
 
   private respondToGesture = (gestureState: PanResponderGestureState) => {
-    const { swipingDir, positionAnimValue } = this.state;
+    const { swipingStatus, positionAnimValue } = this.state;
 
-    if (swipingDir === "idle") {
-      const newSwipingDir = gestureState.dx > 0 ? "right" : "left";
-      this.setState({ swipingDir: newSwipingDir });
+    if (swipingStatus === "idle") {
+      const newswipingStatus = gestureState.dx > 0 ? "right" : "left";
+      this.setState({ swipingStatus: newswipingStatus });
     }
 
     const newX = gestureState.dx + 1;
@@ -165,9 +174,9 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
   };
 
   private onGestureEnd = (gestureState: PanResponderGestureState) => {
-    const { swipingDir } = this.state;
+    const { swipingStatus } = this.state;
 
-    if (swipingDir === "idle") return;
+    if (swipingStatus === "idle") return;
 
     if (Math.abs(gestureState.dx) < 150) {
       this.animItemBackToCenter();
@@ -183,23 +192,23 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
       toValue: { x: 0, y: 0 },
       duration: 100
     }).start(() => {
-      this.setState({ swipingDir: "idle" });
+      this.setState({ swipingStatus: "idle" });
     });
   };
 
-  private animItemOutOfScreen = (swipingDir: "right" | "left") => {
+  private animItemOutOfScreen = (swipingStatus: "right" | "left") => {
     const { cardSize, positionAnimValue } = this.state;
     const { width } = cardSize;
 
     Animated.timing(positionAnimValue, {
       toValue: {
-        x: swipingDir === "right" ? width + 15 : -width - 15,
+        x: swipingStatus === "right" ? width + 15 : -width - 15,
         y: 0
       },
       duration: 100
     }).start(() => {
-      this.setState({ swipingDir: "idle" }, () => {
-        swipingDir === "right" ? this.onItemLiked() : this.onItemRejected();
+      this.setState({ swipingStatus: "idle" }, () => {
+        swipingStatus === "right" ? this.onItemLiked() : this.onItemRejected();
       });
     });
   };
@@ -212,7 +221,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     Animated.spring(positionAnimValue, {
       toValue: { x: 0, y: 0 }
     }).start(() => {
-      this.setState({ swipingDir: "idle" });
+      this.setState({ swipingStatus: "idle" });
     });
   };
 
@@ -224,7 +233,7 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     Animated.spring(positionAnimValue, {
       toValue: { x: 0, y: 0 }
     }).start(() => {
-      this.setState({ swipingDir: "idle" });
+      this.setState({ swipingStatus: "idle" });
     });
   };
 }
