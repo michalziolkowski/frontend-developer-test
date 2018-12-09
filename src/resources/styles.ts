@@ -56,9 +56,10 @@ const styles = {
     }
   },
   userDetails: {
+    sliderSize: screenWidth - 20,
     headerHeight: 80,
     padding: 10,
-    coupleButtonOffset: 25
+    associatedButtonOffset: 25
   },
   userCard: {
     width: screenWidth * 0.95,
