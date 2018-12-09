@@ -107,6 +107,15 @@ const styles = {
   imageSlider: {
     indicatorOffset: 10,
     backgroundColor: "#666"
+  },
+  mainPage: {
+    backgroundColor: "#eee",
+    iconColor: "#fff",
+    storybookIcon: "book-open-page-variant",
+    themeColor: "theme-light-dark"
+  },
+  detailPage: {
+    backgroundColor: "#eee",
   }
 };
 
