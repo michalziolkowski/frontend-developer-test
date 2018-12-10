@@ -1,19 +1,7 @@
 import React from "react";
-// @ts-ignore SC native imports bug
-import styled from "styled-components/native";
-import styles from "../../../resources/styles";
+import { StyledText } from "./styled";
 
-type TextVariant = "default" | "h1" | "h2" | "h3";
-
-export const StyledText = styled.Text(
-  (props: { variant: TextVariant; style: string }) => `
-    font-weight: ${styles.text.fontWeight[props.variant]};
-    font-size: ${styles.text.fontSize[props.variant]};
-    color: ${styles.text.color[props.variant]};
-    ${props.style}
-  `
-);
-StyledText.displayName = "Text";
+export type TextVariant = "default" | "h1" | "h2" | "h3";
 
 export interface IProps {
   variant?: TextVariant;
@@ -23,6 +11,19 @@ export interface IProps {
   numberOfLines?: number;
 }
 
+/**
+ * Displays text for given text *variant*.
+ * Styles for specific variants are defined in styles resource
+ * Provides props to pass custom style, id of Text component and numberOfLines property
+ *
+ * Props:
+ *
+ * variant: "default" | "h1" | "h2" | "h3" - optional (default: "default")
+ * children: string
+ * style: string - optional
+ * id: string - optional
+ * numberOfLines: number - optional
+ */
 const Text = ({
   variant = "default",
   children,

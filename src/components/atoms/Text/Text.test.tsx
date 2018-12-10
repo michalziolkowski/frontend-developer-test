@@ -2,7 +2,8 @@ import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import styles from "../../../resources/styles";
 import TestUtils from "../../../utils/TestUtils";
-import Text, { IProps, StyledText } from "./Text";
+import { StyledText } from "./styled";
+import Text, { IProps } from "./Text";
 
 const testText = "test-text";
 
