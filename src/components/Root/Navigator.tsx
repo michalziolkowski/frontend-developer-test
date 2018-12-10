@@ -2,9 +2,9 @@ import { createStackNavigator } from "react-navigation";
 import routes from "../../resources/routes";
 import { strings } from "../../resources/strings";
 import styles from "../../resources/styles";
-import Storybook from "../../storybook";
 import DetailsPage from "../pages/DetailsPage";
 import MainPage from "../pages/MainPage";
+import StorybookPage from "../pages/StorybookPage";
 
 const {
   storybookHeaderTitle,
@@ -43,7 +43,7 @@ const AppNavigator = createStackNavigator({
     }
   },
   [routes.storybook]: {
-    screen: Storybook,
+    screen: StorybookPage,
     navigationOptions: {
       ...commonNavigationOptions,
       headerTitle: storybookHeaderTitle

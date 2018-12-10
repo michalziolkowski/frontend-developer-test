@@ -13,6 +13,7 @@ import * as actions from "../../../store/actions";
 import IconButton from "../../atoms/IconButton";
 import UserList from "../../organisms/UserList";
 import Text from "../../atoms/Text";
+import { strings } from "../../../resources/strings";
 
 const {
   iconColor,
@@ -71,7 +72,7 @@ class MainPage extends React.PureComponent<IProps> {
     const { isLoading, error } = this.props;
 
     if (isLoading) {
-      return <Text>Loading...</Text>;
+      return <Text>{strings.loading}</Text>;
     }
 
     if (error) {

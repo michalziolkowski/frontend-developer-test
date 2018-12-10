@@ -31,10 +31,6 @@
     - [**UserDetails**](#userdetails)
     - [**UserList**](#userlist)
     - [**UserListItem**](#userlistitem)
-  - [Pages](#pages)
-    - [**MainPage**](#mainpage)
-    - [**DetailsPage**](#detailspage)
-  - [Root](#root)
 
 # Design
 
@@ -337,10 +333,3 @@ Status icon is dependend on gesture direction, right - like, left - reject
 
 **Props**:
 - user: IUser
-
-## Pages
-
-### **MainPage**
-### **DetailsPage**
-
-## Root

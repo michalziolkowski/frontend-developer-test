@@ -4,7 +4,8 @@ const strings = {
   headerAbout: "About",
   storybookHeaderTitle: "Storybook",
   mainHeaderTitle: "Frontend Dev Test",
-  userDetailsHeaderTitle: "User details"
+  userDetailsHeaderTitle: "User details",
+  loading: "Loading..."
 };
 
 export { strings };
