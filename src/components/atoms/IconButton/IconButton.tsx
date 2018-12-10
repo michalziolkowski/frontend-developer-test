@@ -18,12 +18,6 @@ export interface IProps {
  * Displays clickable icon form MatterialCommunityIcons set.
  * Provides props to set name, color & padding of the icon.
  * Triggers *onClick* when icon is pressed
- *
- * Props:
- * iconName: string
- * iconColor: string - optional
- * padding: number - optional
- * onClick: function - optional
  */
 const IconButton = ({
   iconName,

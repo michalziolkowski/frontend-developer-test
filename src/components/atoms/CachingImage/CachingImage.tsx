@@ -21,11 +21,6 @@ export interface IState {
  * Additional url - *nextUrl* is displayed in hidden mode so it is actually loaded but not visible to the user
  * On props change images are switched.
  * This action allows next image to render more smoothly and avoids android-specific image flickering on load
- *
- * Props:
- * viewSize: number;
- * url: string;
- * nextUrl: string;
  */
 export default class CachingImage extends React.Component<IProps, IState> {
   constructor(props: IProps) {

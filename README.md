@@ -11,6 +11,30 @@
   - [Compilation & Type check](#compilation--type-check)
   - [Static Code Analysis](#static-code-analysis)
   - [Testing & Docs](#testing--docs)
+- [Structure](#structure)
+  - [Project](#project)
+  - [Component](#component)
+  - [Unit Tests](#unit-tests)
+- [Components Overview](#components-overview)
+  - [Atoms](#atoms)
+    - [**AssocatedButton**](#assocatedbutton)
+    - [**CachingImage**](#cachingimage)
+    - [**IconButton**](#iconbutton)
+    - [**SliderIndicator**](#sliderindicator)
+    - [**Text**](#text)
+  - [Molecules](#molecules)
+    - [**ImageSlider**](#imageslider)
+    - [**UserInfoDetails**](#userinfodetails)
+    - [**UserInfoHeader**](#userinfoheader)
+  - [Organisms](#organisms)
+    - [**UserCard**](#usercard)
+    - [**UserDetails**](#userdetails)
+    - [**UserList**](#userlist)
+    - [**UserListItem**](#userlistitem)
+  - [Pages](#pages)
+    - [**MainPage**](#mainpage)
+    - [**DetailsPage**](#detailspage)
+  - [Root](#root)
 
 # Design
 
@@ -52,6 +76,22 @@ Below is an overview of why I choose these packages.
   - components can be completely independent of application state, therefore can focus strictly on user interface. This keeps the code clean but also makes testing UI much simpler as there is much less need for mocking.
   - it also makes it easier to understand the state and debug it through reducers.
   - redux structure allows executing synchronous and asynchronous code undistinguishable for components layer which makes it easy to work with.
+
+- **React Navigation** - navigation library
+  - supports Android/iOs navigation properties
+  - makes passing props between screens easier
+  - handles header configuration
+
+- **redux-api-middleware** - redux middleware
+  - middleware for redux with easily declarable REST API calls
+  - handles requests/response states
+
+- **react-native-expo-image-cache** - cache library
+  - takes care of image caching
+
+- **expo-react-native-shadow** - UI library
+  - provides cross-platform, configurable shadow view based on SVG
+  - unifies working with shadows as iOs/Android have separate ways to deal with it that feel differently
 
 ## Compilation & Type check
 
@@ -96,7 +136,133 @@ Below is an overview of why I choose these packages.
   - makes it easier to assert, manipulate components output
   - is very fast, especially when rendering shallow components
 
+- **sinon** - testing utility
+  - allows spying on component functions to make sure they are triggered properly
+
 - **Storybook** - development environment for UI components
   - provides living documentation
   - simplifies components development as you can run, style, test in isolated environment without app-specific dependencies
   - provides addons like knobs/actions and many more tools to keep all of your component knowledge and testing/viewing in one place.
+
+# Structure
+
+## Project
+
+- **components** - this directory contains all application components in atomic structure (atoms, molecules, organisms, pages)
+- **resources** - this directory contains resource files on style, theme, application routes, model and config data
+- **store** - this directory contains all redux related code - actions, reducers, middleware related code
+- **storybook** - this directory contains storybook configuration files
+- **utils** - utilities used across the application
+
+## Component
+
+Every component is contained in separate folder with following structure:
+- **index.ts** file - this file organizes exports for component implementation, usually exports only fully connected component as a default
+- **Component.tsx** - main file for component implementation
+- **Component.test.tsx** - unit tests for component
+- **Component.story.tsx** - this file is recognized from storybook and contains information on how to display stories related to this component
+- **styled.ts** - this file only occurs if main component file has many styled subcomponents and contains them for code-clarity
+- **SubComponent.tsx** - structure includes subcomponents that are only valid in context on main component so they cannot be reusable
+
+## Unit Tests
+
+Unit tests for component are divided for 5 sections
+
+- **Props** - tests that verify default props being set properly
+- **State** - tests that verify default state being set properly
+- **Render** - tests that verify render function of the component, if all the props in subcomponents are set properly regarding main component state & props
+- **Interaction** - tests that verify component state, props callbacks on user interaction or lifecycle methods occurrence
+- **Style** - tests that verify if specific style properties are connected to related global style object
+
+# Components Overview
+
+## Atoms
+
+### **AssocatedButton**
+
+Displays circular icon button with associated icon placed on the border
+
+### **CachingImage**
+
+Displays image with URI for given *url*, size of the image is determined by *viewSize*.
+
+Additional url - *nextUrl* is displayed in hidden mode so it is actually loaded but not visible to the user
+
+On props change images are switched.
+
+This action allows next image to render more smoothly and avoids android-specific image flickering on load
+
+**Props**:
+- viewSize: number
+- url: string
+- nextUrl: string
+
+### **IconButton**
+
+Displays clickable icon form MatterialCommunityIcons set.
+
+Provides props to set name, color & padding of the icon.
+
+Triggers *onClick* when icon is pressed
+
+**Props**:
+- iconName: string
+- iconColor: string - optional
+- padding: number - optional
+- onClick: function - optional
+
+### **SliderIndicator**
+
+Renders styled container with *count* number of points.
+
+Point on index *index* is styled to indicate current element
+
+**Props**:
+- index: number
+- count: number
+
+### **Text**
+
+Displays text for given text *variant*.
+
+Styles for specific variants are defined in styles resource
+
+Provides props to pass custom style, id of Text component and numberOfLines property
+
+**Props**:
+- variant: "default" | "h1" | "h2" | "h3" - optional (default: "default")
+- children: string
+- style: string - optional
+- id: string - optional
+- numberOfLines: number - optional
+
+## Molecules
+
+### **ImageSlider**
+
+Renders touchable CachingImage for given *images* array and SliderIndicator for current state *index*.
+
+On being clicked increases *index* (or sets to 0 on making full circle) and displays next image from *images* array.
+
+If *images* array is empty, renders placeholder view with *viewSize* hegiht & width
+
+**Props**:
+- images: IImage[]
+- viewSize: number
+
+### **UserInfoDetails**
+### **UserInfoHeader**
+
+## Organisms
+
+### **UserCard**
+### **UserDetails**
+### **UserList**
+### **UserListItem**
+
+## Pages
+
+### **MainPage**
+### **DetailsPage**
+
+## Root

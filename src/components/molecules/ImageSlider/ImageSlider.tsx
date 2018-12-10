@@ -1,26 +1,9 @@
 import React from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
-// @ts-ignore
-import styled from "styled-components/native";
 import { IImage } from "../../../resources/model";
-import styles from "../../../resources/styles";
 import CachingImage from "../../atoms/CachingImage";
 import SliderIndicator from "../../atoms/SliderIndicator";
-
-const { backgroundColor, indicatorOffset } = styles.imageSlider;
-
-export const StyledTouchable = styled.View`
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  background-color: ${backgroundColor};
-`;
-
-export const IndicatorView = styled.View`
-  position: absolute;
-  right: ${indicatorOffset};
-  top: ${indicatorOffset};
-`;
+import { IndicatorView, StyledTouchable } from "./styled";
 
 export interface IProps {
   images: IImage[];
@@ -32,6 +15,11 @@ export interface IState {
   count: number;
 }
 
+/**
+ * Renders touchable CachingImage for given *images* array and SliderIndicator for current state *index*.
+ * On being clicked increases *index* (or sets to 0 on making full circle) and displays next image from *images* array.
+ * If *images* array is empty, renders placeholder view with *viewSize* hegiht & width
+ */
 class ImageSlider extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
@@ -48,6 +36,10 @@ class ImageSlider extends React.PureComponent<IProps, IState> {
     </TouchableWithoutFeedback>
   );
 
+  /**
+   * Renders CachingImage & SliderIndicator if images array is not empty.
+   * Otherwise renders View for given size (sort of a placeholder)
+   */
   private renderSlider = () => {
     const { viewSize, images } = this.props;
     const { count, index } = this.state;

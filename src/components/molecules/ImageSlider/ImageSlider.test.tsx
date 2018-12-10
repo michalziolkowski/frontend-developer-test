@@ -3,12 +3,8 @@ import React from "react";
 import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TestUtils from "../../../utils/TestUtils";
-import ImageSlider, {
-  IndicatorView,
-  IProps,
-  IState,
-  StyledTouchable
-} from "./ImageSlider";
+import ImageSlider, { IProps, IState } from "./ImageSlider";
+import { IndicatorView, StyledTouchable } from "./styled";
 
 const props: IProps = {
   viewSize: 50,

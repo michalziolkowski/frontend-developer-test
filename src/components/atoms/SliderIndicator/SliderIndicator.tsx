@@ -9,10 +9,6 @@ export interface IProps {
 /**
  * Renders styled container with *count* number of points.
  * Point on index *index* is styled to indicate current element
- *
- * Props:
- * index: number
- * count: number
  */
 const SliderIndicator = (props: IProps) => {
   const renderPoints = () => {
