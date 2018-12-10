@@ -1,4 +1,4 @@
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -62,8 +62,23 @@ const styles = {
     associatedButtonOffset: 25
   },
   userList: {
-    initialItemHeight: screenWidth + screenWidth * 0.95 * 0.2,
-    viewPosition: 0.5
+    itemHeight: screenWidth + screenWidth * 0.95 * 0.2,
+    viewPosition: 0.5,
+    headerElement: {
+      iconSize: 60,
+      iconName: {
+        left: "chevron-double-left",
+        right: "chevron-double-right",
+        down: "chevron-double-down",
+        like: "heart",
+        reject: "close"
+      },
+      iconColor: {
+        like: "#fc4600",
+        reject: "#bc3e3e",
+        direction: "#888"
+      }
+    }
   },
   userListItem: {
     itemOpacity: {
@@ -109,13 +124,22 @@ const styles = {
     backgroundColor: "#666"
   },
   mainPage: {
+    iconPadding: 10,
     backgroundColor: "#eee",
     iconColor: "#fff",
-    storybookIcon: "book-open-page-variant",
-    themeColor: "theme-light-dark"
+    storybookIcon: "book-open-page-variant"
   },
   detailPage: {
     backgroundColor: "#eee",
+    backIcon: "arrow-left",
+    iconColor: "#fff",
+    iconPadding: 10
+  },
+  header: {
+    height: 20,
+    backgroundColor: "#fc4600",
+    tintColor: "#fff",
+    fontWeight: "100"
   }
 };
 

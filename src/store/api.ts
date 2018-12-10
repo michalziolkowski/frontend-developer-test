@@ -1,6 +1,6 @@
 // @ts-ignore
 import { RSAA } from "redux-api-middleware";
-import { config } from "../../resources/config";
+import { config } from "../resources/config";
 
 const FETCH_USERS_REQUEST = "request-users";
 const FETCH_USERS_RECEIVE = "receive-users";
@@ -12,7 +12,7 @@ export const ActionType = {
   FETCH_USERS_REQUEST
 };
 
-const fetchUsersEndpoint = "https://fld-devtest-api.herokuapp.com/api/v1/users";
+const fetchUsersEndpoint = config.endpoint;
 
 const fetchUsers = () => ({
   [RSAA]: {

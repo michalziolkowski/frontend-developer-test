@@ -2,12 +2,11 @@ import { applyMiddleware, compose, createStore } from "redux";
 // @ts-ignore
 import { apiMiddleware } from "redux-api-middleware";
 import thunk from "redux-thunk";
-import { api } from "../store/API";
-import reducers from "../store/reducers";
+import { api, Reducer } from "../store";
 
 const configureStore = () => {
   const store = createStore(
-    reducers,
+    Reducer,
     {},
     compose(applyMiddleware(apiMiddleware, thunk.withExtraArgument(api)))
   );
