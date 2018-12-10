@@ -307,7 +307,36 @@ Whole content is contained in ScrollView.
 - user: IUser
 
 ### **UserList**
+
+Optimized FlatList for UserListItems.
+
+Scroll action deceleration rate is very low to make user snap into current item.
+
+Snap event occurs when user releases scroll touch to the list
+
+Component is registering current items viewability and makes decision to snap to next item if it already visible enough.
+
+Renders custom Footer and Header items
+
+**Props**:
+- users: IUser[]
+
 ### **UserListItem**
+
+This component renders animated UserCard with custom shadow for given *user*
+
+Component recognizes user gestures and captures horizontal gestures if these have small enough change on y axis to consider them side swiping.
+
+On touch animates UserCard position to follow the touch.
+
+On certain treshold releases the gesture and animates item away and back to the screen.
+
+In the same time status icon is displayed over card.
+
+Status icon is dependend on gesture direction, right - like, left - reject
+
+**Props**:
+- user: IUser
 
 ## Pages
 

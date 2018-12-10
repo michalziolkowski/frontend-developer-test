@@ -40,6 +40,15 @@ interface IState {
   panResponder: PanResponderInstance;
 }
 
+/**
+ * This component renders UserCard with custom shadow.
+ * Component recognizes user gestures and captures horizontal gestures if these have small
+ * enough change on y axis to consider them side swiping.
+ * On touch animates UserCard position to follow the touch.
+ * On certain treshold releases the gesture and animates item away and back to the screen.
+ * In the same time status icon is displayed over card.
+ * Status icon is dependend on gesture diretcion, right - like, left - reject
+ */
 export default class UserListItem extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
@@ -92,6 +101,9 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
     );
   };
 
+  /**
+   * return UserCard with styled shadow if cardSize was previosuly calucalted
+   */
   private renderUserCard = () => {
     const { user } = this.props;
     const { cardSize, status } = this.state;
@@ -136,7 +148,6 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
   };
 
   /** Layout callback */
-
   private onCardLayoutChange = (event: LayoutChangeEvent) => {
     const { cardSize } = this.state;
     const isCardSizeCalculated = cardSize.height !== 0 && cardSize.width !== 0;
@@ -148,7 +159,6 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
   };
 
   /** Gesture respond */
-
   private respondToGesture = (gestureState: PanResponderGestureState) => {
     const { swipingStatus, positionAnimValue } = this.state;
 
@@ -189,7 +199,6 @@ export default class UserListItem extends React.PureComponent<IProps, IState> {
   };
 
   /** Animation */
-
   private animItemBackToCenter = () => {
     Animated.timing(this.state.positionAnimValue, {
       toValue: { x: 0, y: 0 },
