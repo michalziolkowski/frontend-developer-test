@@ -296,6 +296,16 @@ Animation takes effect on userInfo components and AssociatedButton if present
 - user: IUser
 
 ### **UserDetails**
+
+Displays ImageSlider with user photos and userInfo in UserInfoHeader & UserInfoDetails components
+
+If user has defined associated user, displays AssociatedButton.
+
+Whole content is contained in ScrollView.
+
+**Props**:
+- user: IUser
+
 ### **UserList**
 ### **UserListItem**
 
