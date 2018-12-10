@@ -251,6 +251,19 @@ If *images* array is empty, renders placeholder view with *viewSize* hegiht & wi
 - viewSize: number
 
 ### **UserInfoDetails**
+
+Renders headers and text for *userInfo* sections.
+
+Desires section is only rendered if *userInfo* has defined desires.
+
+Interests section is only rendered if *userInfo* has defined interests.
+
+If *showPartialAbout* is true, about text is cut to 7 lines.
+
+**Props**:
+- userInfo: IUserInfo
+- showPartialAbout: boolean - optional
+
 ### **UserInfoHeader**
 
 ## Organisms

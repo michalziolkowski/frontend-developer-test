@@ -4,7 +4,15 @@ import { strings } from "../../../resources/strings";
 import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TextUtils from "../../../utils/TextUtils";
-import UserInfoHeader, { IProps } from "./UserInfoDetails";
+import UserInfoDetails, {
+  ABOUT_HEADER_ID,
+  ABOUT_ID,
+  DESIRES_HEADER_ID,
+  DESIRES_ID,
+  INTERESTS_HEADER_ID,
+  INTERESTS_ID,
+  IProps
+} from "./UserInfoDetails";
 
 const { info } = MockUtils.mockUser;
 
@@ -22,16 +30,16 @@ let interestsHeaderText: ShallowWrapper;
 let interestsText: ShallowWrapper;
 
 const updateWrappers = () => {
-  aboutHeaderText = wrapper.find('[id="aboutHeader"]');
-  aboutText = wrapper.find('[id="about"]');
-  desiresHeaderText = wrapper.find('[id="desiresHeader"]');
-  desiresText = wrapper.find('[id="desires"]');
-  interestsHeaderText = wrapper.find('[id="interestsHeader"]');
-  interestsText = wrapper.find('[id="interests"]');
+  aboutHeaderText = wrapper.find(`[id="${ABOUT_HEADER_ID}"]`);
+  aboutText = wrapper.find(`[id="${ABOUT_ID}"]`);
+  desiresHeaderText = wrapper.find(`[id="${DESIRES_HEADER_ID}"]`);
+  desiresText = wrapper.find(`[id="${DESIRES_ID}"]`);
+  interestsHeaderText = wrapper.find(`[id="${INTERESTS_HEADER_ID}"]`);
+  interestsText = wrapper.find(`[id="${INTERESTS_ID}"]`);
 };
 
 beforeEach(() => {
-  wrapper = shallow<IProps>(<UserInfoHeader {...props} />);
+  wrapper = shallow<IProps>(<UserInfoDetails {...props} />);
   updateWrappers();
 });
 
@@ -79,7 +87,7 @@ describe("RENDER", () => {
         about: `Lorem ipsum dolor sit amet`,
         interests: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Conse"]
       };
-      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      wrapper = shallow<IProps>(<UserInfoDetails userInfo={userInfo} />);
       updateWrappers();
 
       // then
@@ -113,7 +121,7 @@ describe("RENDER", () => {
         about: `Lorem ipsum dolor sit amet`,
         interests: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Conse"]
       };
-      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      wrapper = shallow<IProps>(<UserInfoDetails userInfo={userInfo} />);
       updateWrappers();
 
       // then
@@ -141,7 +149,7 @@ describe("RENDER", () => {
         name: "Nickey",
         about: `Lorem ipsum dolor sit amet`
       };
-      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      wrapper = shallow<IProps>(<UserInfoDetails userInfo={userInfo} />);
       updateWrappers();
 
       // then
@@ -174,7 +182,7 @@ describe("RENDER", () => {
         name: "Nickey",
         about: `Lorem ipsum dolor sit amet`
       };
-      wrapper = shallow<IProps>(<UserInfoHeader userInfo={userInfo} />);
+      wrapper = shallow<IProps>(<UserInfoDetails userInfo={userInfo} />);
       updateWrappers();
 
       // then

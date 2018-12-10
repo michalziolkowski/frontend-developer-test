@@ -1,62 +1,55 @@
 import React from "react";
-// @ts-ignore
-import styled from "styled-components/native";
 import { IUserInfo } from "../../../resources/model";
 import { strings } from "../../../resources/strings";
-import styles from "../../../resources/styles";
 import TextUtils from "../../../utils/TextUtils";
 import Text from "../../atoms/Text";
+import {
+  AboutView,
+  SectionsView,
+  StyledView,
+  TopMarginTextStyle
+} from "./styled";
+
+export const DESIRES_HEADER_ID = "desiresHeader";
+export const INTERESTS_HEADER_ID = "interestsHeader";
+export const ABOUT_HEADER_ID = "aboutHeader";
+export const DESIRES_ID = "desires";
+export const INTERESTS_ID = "interests";
+export const ABOUT_ID = "about";
 
 export interface IProps {
   userInfo: IUserInfo;
   showPartialAbout?: boolean;
 }
 
-const StyledView = styled.View`
-  flex-direction: column;
-  flex: 1;
-  align-self: stretch;
-  justify-content: space-between;
-`;
-
-const AboutView = styled.View`
-  flex-direction: column;
-  align-self: stretch;
-  justify-content: flex-end;
-`;
-
-const SectionsView = styled.View`
-  flex-direction: column;
-  align-self: stretch;
-  justify-content: flex-end;
-`;
-
-export const TopMarginTextStyle = `margin-top: ${
-  styles.userInfoDetails.headerMargin
-};`;
-
+/**
+ * Renders headers and text for *userInfo* sections.
+ * Desires section is only rendered if *userInfo* has defined desires.
+ * Interests section is only rendered if *userInfo* has defined interests.
+ * If *showPartialAbout* is true, about text is cut to 7 lines.
+ */
 const UserInfoDetails = ({ showPartialAbout = false, userInfo }: IProps) => {
   const { about, desires, interests } = userInfo;
 
   const renderUserInfoDesires = () =>
     desires && (
       <>
-        <Text id="desiresHeader" style={TopMarginTextStyle} variant="h2">
+        <Text id={DESIRES_HEADER_ID} style={TopMarginTextStyle} variant="h2">
           {strings.headerDesires}
         </Text>
 
-        <Text id="desires">{TextUtils.getFormattedStringList(desires)}</Text>
+        <Text id={DESIRES_ID}>{TextUtils.getFormattedStringList(desires)}</Text>
       </>
     );
 
   const renderUserInfoInterests = () =>
     interests && (
       <>
-        <Text id="interestsHeader" style={TopMarginTextStyle} variant="h2">
+        <Text id={INTERESTS_HEADER_ID} style={TopMarginTextStyle} variant="h2">
           {strings.headerInterests}
         </Text>
 
-        <Text id="interests">
+        <Text id={INTERESTS_ID}>
           {TextUtils.getFormattedStringList(interests)}
         </Text>
       </>
@@ -65,11 +58,11 @@ const UserInfoDetails = ({ showPartialAbout = false, userInfo }: IProps) => {
   return (
     <StyledView>
       <AboutView>
-        <Text id="aboutHeader" variant="h2">
+        <Text id={ABOUT_HEADER_ID} variant="h2">
           {strings.headerAbout}
         </Text>
 
-        <Text id="about" numberOfLines={showPartialAbout ? 7 : undefined}>
+        <Text id={ABOUT_ID} numberOfLines={showPartialAbout ? 7 : undefined}>
           {about}
         </Text>
       </AboutView>
