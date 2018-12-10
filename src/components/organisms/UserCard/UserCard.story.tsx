@@ -2,7 +2,6 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 // @ts-ignore
 import styled from "styled-components/native";
-import theme from "../../../resources/theme";
 import MockUtils from "../../../utils/MockUtils";
 import UserCard from "./UserCard";
 
@@ -11,7 +10,7 @@ const BackgroundView = styled.View`
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  background-color: ${theme.color.gray};
+  background-color: #eee;
 `;
 
 storiesOf("organisms/UserCard", module)

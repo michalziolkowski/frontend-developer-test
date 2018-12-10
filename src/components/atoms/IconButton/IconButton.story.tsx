@@ -4,14 +4,13 @@ import React from "react";
 // @ts-ignore
 import styled from "styled-components/native";
 import IconButton from ".";
-import theme from "../../../resources/theme";
 
 const BackgroundView = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
   align-self: stretch;
-  background-color: ${theme.color.primary};
+  background-color: #fc4600;
 `;
 
 storiesOf("atoms/IconButton", module)
@@ -20,7 +19,7 @@ storiesOf("atoms/IconButton", module)
   .add("heart", () => (
     <IconButton
       iconName={text("iconName", "heart")}
-      iconColor={text("iconColor", theme.color.white)}
+      iconColor={text("iconColor", "#fff")}
     />
   ))
   .add("information", () => (
