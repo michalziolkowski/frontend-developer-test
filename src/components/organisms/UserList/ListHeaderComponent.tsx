@@ -1,7 +1,10 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
+import styles from "../../../resources/styles";
 import { HeaderInfoView, StyledExtremeListItem } from "./styled";
+
+const { iconName, iconSize, iconColor } = styles.userList.headerElement;
 
 interface IProps {
   height: number;
@@ -11,27 +14,39 @@ const ListHeaderComponent = (props: IProps) => (
   <StyledExtremeListItem height={props.height}>
     <HeaderInfoView>
       <View>
-        <MaterialCommunityIcons name="close" size={60} color="#bc3e3e" />
+        <MaterialCommunityIcons
+          name={iconName.reject}
+          size={iconSize}
+          color={iconColor.reject}
+        />
 
         <MaterialCommunityIcons
-          name="chevron-double-left"
-          size={60}
-          color="#888"
+          name={iconName.left}
+          size={iconSize}
+          color={iconColor.direction}
         />
       </View>
 
       <View>
-        <MaterialCommunityIcons name="heart" size={60} color="#fc4600" />
+        <MaterialCommunityIcons
+          name={iconName.like}
+          size={iconSize}
+          color={iconColor.like}
+        />
 
         <MaterialCommunityIcons
-          name="chevron-double-right"
-          size={60}
-          color="#888"
+          name={iconName.right}
+          size={iconSize}
+          color={iconColor.direction}
         />
       </View>
     </HeaderInfoView>
 
-    <MaterialCommunityIcons name="chevron-double-down" size={60} color="#888" />
+    <MaterialCommunityIcons
+      name={iconName.down}
+      size={iconSize}
+      color={iconColor.direction}
+    />
   </StyledExtremeListItem>
 );
 

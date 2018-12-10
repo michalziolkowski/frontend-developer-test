@@ -2,7 +2,6 @@ import React from "react";
 import {
   Animated,
   FlatList,
-  LayoutChangeEvent,
   ListRenderItemInfo,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -20,7 +19,7 @@ import ListFooterComponent from "./ListFooterComponent";
 import ListHeaderComponent from "./ListHeaderComponent";
 import { StyledExtremeListItem, StyledListItem } from "./styled";
 
-const { initialItemHeight, viewPosition } = styles.userList;
+const { itemHeight, viewPosition } = styles.userList;
 
 const BOTTOM_ITEM = { localId: "bottom-item-id" } as IUser;
 
@@ -29,15 +28,20 @@ interface IProps {
 }
 
 interface IState {
-  itemHeight: number;
-  initialHeightMeasured: boolean;
   index: number;
   currUsers: IUser[];
-  scale: Animated.Value;
   nextVisibleIndex: number;
   prevVisibleIndex: number;
 }
 
+/**
+ * Optimized FlatList for UserListItems.
+ * Scroll action deceleration rate is very low to make user snap into current item.
+ * Snap event occurs when user releases scroll touch to the list
+ * Component is registering current items viewability and makes decision to snap to next item if it already visible enough.
+ *
+ * Renders custom Footer and Header items
+ */
 export default class UserList extends React.PureComponent<IProps, IState> {
   private listRef: FlatList<IUser> | null;
   private viewabilityCallbackConfig: ViewabilityConfigCallbackPairs;
@@ -61,9 +65,6 @@ export default class UserList extends React.PureComponent<IProps, IState> {
     this.state = {
       nextVisibleIndex: 0,
       prevVisibleIndex: 0,
-      scale: new Animated.Value(1),
-      initialHeightMeasured: false,
-      itemHeight: initialItemHeight,
       index: 0,
       currUsers: users ? users : []
     };
@@ -106,30 +107,33 @@ export default class UserList extends React.PureComponent<IProps, IState> {
     );
   };
 
+  /**
+   * Renders UserListItem or ListFooterComponent if rendering item for last index
+   */
   private renderItem = ({ item, index }: ListRenderItemInfo<IUser>) => {
-    const { currUsers, itemHeight } = this.state;
+    const { currUsers } = this.state;
 
     return index === currUsers.length ? (
       <StyledExtremeListItem key={index} height={itemHeight}>
         <ListFooterComponent />
       </StyledExtremeListItem>
     ) : (
-      <StyledListItem onLayout={this.onFirstItemLayout} key={index}>
+      <StyledListItem key={index}>
         <UserListItem key={index} user={item} />
       </StyledListItem>
     );
   };
 
   private getHeaderComponent = () => (
-    <ListHeaderComponent height={this.state.itemHeight} />
+    <ListHeaderComponent height={itemHeight} />
   );
 
   private getDecelerationRate = () => (Platform.OS === "android" ? 0.1 : 0.95);
 
   private getItemLayout = (_: any, index: number) => ({
     index,
-    length: this.state.itemHeight,
-    offset: this.state.itemHeight * index
+    length: itemHeight,
+    offset: itemHeight * index
   });
 
   private onMomentumScrollBegin = (
@@ -183,11 +187,4 @@ export default class UserList extends React.PureComponent<IProps, IState> {
   };
 
   private keyExtractor = (item: IUser) => item.localId;
-
-  private onFirstItemLayout = (event: LayoutChangeEvent) => {
-    if (this.state.initialHeightMeasured) return;
-
-    const { height } = event.nativeEvent.layout;
-    this.setState({ itemHeight: height, initialHeightMeasured: true });
-  };
 }
