@@ -10,15 +10,15 @@ import { IUser } from "../../../resources/model";
 import routes from "../../../resources/routes";
 import styles from "../../../resources/styles";
 import * as actions from "../../../store/actions";
-import LogUtils from "../../../utils/LogUtils";
 import IconButton from "../../atoms/IconButton";
 import UserList from "../../organisms/UserList";
+import Text from "../../atoms/Text";
 
 const {
   iconColor,
   storybookIcon,
-  themeColor,
-  backgroundColor
+  backgroundColor,
+  iconPadding
 } = styles.mainPage;
 
 const StyledContainer = styled.View`
@@ -31,8 +31,9 @@ const StyledContainer = styled.View`
 
 export interface IProps {
   users?: IUser[];
+  isLoading: boolean;
+  error?: string;
   fetchUsers?: () => void;
-  switchTheme?: () => void;
 }
 
 class MainPage extends React.PureComponent<IProps> {
@@ -40,59 +41,52 @@ class MainPage extends React.PureComponent<IProps> {
     navigation: NavigationScreenProp<any, any>,
     route: string
   ) => () => {
-    navigation.navigate(route);
+    navigation.push(route);
   };
 
   public static navigationOptions = (props: NavigationInjectedProps) => ({
     headerRight: (
-      <>
-        <IconButton
-          onClick={MainPage.navigateTo(props.navigation, routes.storybook)}
-          iconColor={iconColor}
-          iconName={storybookIcon}
-        />
-        <IconButton
-          onClick={
-            props.navigation.state.params
-              ? props.navigation.state.params.switchTheme
-              : undefined
-          }
-          iconColor={iconColor}
-          iconName={themeColor}
-        />
-      </>
+      <IconButton
+        padding={iconPadding}
+        onClick={MainPage.navigateTo(props.navigation, routes.storybook)}
+        iconColor={iconColor}
+        iconName={storybookIcon}
+      />
     )
   });
 
   public componentDidMount = () => {
-    const { fetchUsers } = this.props;
+    const { fetchUsers, users } = this.props;
 
-    // @ts-ignore
-    this.props.navigation.setParams({ switchTheme: this.switchTheme });
-
-    if (fetchUsers) {
+    if ((!users || users.length === 0) && fetchUsers) {
       fetchUsers();
     }
   };
 
   public render = () => (
-    <StyledContainer>
-      <UserList users={this.props.users} />
-    </StyledContainer>
+    <StyledContainer>{this.renderListOrStatus()}</StyledContainer>
   );
 
-  private switchTheme = () => {
-    const { switchTheme } = this.props;
+  private renderListOrStatus = () => {
+    const { isLoading, error } = this.props;
 
-    if (switchTheme) {
-      switchTheme();
+    if (isLoading) {
+      return <Text>Loading...</Text>;
     }
+
+    if (error) {
+      return <Text>{error}</Text>;
+    }
+
+    return <UserList users={this.props.users} />;
   };
 }
 
 const mapStateToProps = (state: any) => ({
   // @ts-ignore
-  users: Array.from(state.api.users.values())
+  users: Array.from(state.api.users.values()),
+  isLoading: state.api.isLoading,
+  error: state.api.error
 });
 
 export default connect(
