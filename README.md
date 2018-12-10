@@ -283,6 +283,18 @@ If *icon* is specified clickable icon renders to the side and triggers *onIconCl
 ## Organisms
 
 ### **UserCard**
+
+Displays ImageSlider with user photos and userInfo in UserInfoHeader & UserInfoDetails components
+
+If user has defined associated user, displays AssociatedButton.
+
+Implements custom animation to view UserInfoDetails that is triggered by UserInfoHeader icon.
+
+Animation takes effect on userInfo components and AssociatedButton if present
+
+**Props**:
+- user: IUser
+
 ### **UserDetails**
 ### **UserList**
 ### **UserListItem**

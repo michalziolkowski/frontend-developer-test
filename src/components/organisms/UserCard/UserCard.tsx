@@ -37,6 +37,13 @@ export interface IState {
   userInfoAnimValue: Animated.Value;
 }
 
+/**
+ * Displays ImageSlider with user photos and userInfo in UserInfoHeader & UserInfoDetails components
+ * If user has defined associated user, displays AssociatedButton.
+ *
+ * Implements custom animation to view UserInfoDetails that is triggered by UserInfoHeader icon.
+ * Animation takes effect on userInfo components and AssociatedButton if present
+ */
 class UserCard extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
@@ -85,6 +92,9 @@ class UserCard extends React.PureComponent<IProps, IState> {
     );
   };
 
+  /**
+   * Returns current animation styles for UserInfo components container
+   */
   private userInfoAnimTranslateStyles = () => {
     const { userInfoAnimValue } = this.state;
 
@@ -98,6 +108,9 @@ class UserCard extends React.PureComponent<IProps, IState> {
     return { transform: [{ translateY: detailsMoveY }] };
   };
 
+  /**
+   * Returns current animation styles for AssociatedButton container
+   */
   private associatedButtonAnimTranslateStyles = () => {
     const { userInfoAnimValue } = this.state;
     const { size } = styles.associatedButton;
@@ -110,6 +123,9 @@ class UserCard extends React.PureComponent<IProps, IState> {
     return { transform: [{ translateY: moveY }] };
   };
 
+  /**
+   * Triggers animation depending on *isShowingDetails* state
+   */
   private onDetailsClick = () => {
     const { isShowingDetails, userInfoAnimValue } = this.state;
 
@@ -131,6 +147,9 @@ class UserCard extends React.PureComponent<IProps, IState> {
     this.setState({ isShowingDetails: !isShowingDetails });
   };
 
+  /**
+   * Renders AssociatedButton if user has defined associated field
+   */
   private renderAssociatedButton = () => {
     const { associated } = this.props.user;
 
