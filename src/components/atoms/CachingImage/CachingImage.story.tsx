@@ -14,6 +14,6 @@ storiesOf("atoms/CachingImage", module)
     <CachingImage
       url={text("url", photos[0].url)}
       nextUrl={text("nextUrl", photos[1].url)}
-      viewSize={number("size", 100)}
+      viewSize={number("size", 300)}
     />
   ));

@@ -2,7 +2,13 @@ import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import sinon from "sinon";
 import TestUtils from "../../../utils/TestUtils";
-import CachingImage, { ImageView, IProps, IState } from "./CachingImage";
+import CachingImage, {
+  IProps,
+  IState,
+  PRIMARY_ID,
+  SECONDARY_ID
+} from "./CachingImage";
+import { ImageView } from "./styled";
 
 const props: IProps = {
   viewSize: 50,
@@ -23,8 +29,8 @@ let imageView: ShallowWrapper;
 const updateWrappers = () => {
   imageView = wrapper.find("ImageView");
   imageArray = wrapper.find("Image");
-  imagePrimary = wrapper.find('[id="primary"]');
-  imageSecondary = wrapper.find('[id="secondary"]');
+  imagePrimary = wrapper.find(`[id="${PRIMARY_ID}"]`);
+  imageSecondary = wrapper.find(`[id="${SECONDARY_ID}"]`);
 };
 
 beforeEach(() => {
@@ -55,8 +61,8 @@ describe("RENDER", () => {
       const firstImage = imageArray.at(0);
       const secondImage = imageArray.at(1);
 
-      expect(firstImage.props()["id"]).toEqual("primary");
-      expect(secondImage.props()["id"]).toEqual("secondary");
+      expect(firstImage.props()["id"]).toEqual(PRIMARY_ID);
+      expect(secondImage.props()["id"]).toEqual(SECONDARY_ID);
     });
 
     describe("if state *shouldSwitchImages*", () => {
@@ -70,8 +76,8 @@ describe("RENDER", () => {
         const firstImage = imageArray.at(0);
         const secondImage = imageArray.at(1);
 
-        expect(firstImage.props()["id"]).toEqual("secondary");
-        expect(secondImage.props()["id"]).toEqual("primary");
+        expect(firstImage.props()["id"]).toEqual(SECONDARY_ID);
+        expect(secondImage.props()["id"]).toEqual(PRIMARY_ID);
       });
     });
   });
