@@ -31,6 +31,8 @@
     - [**UserDetails**](#userdetails)
     - [**UserList**](#userlist)
     - [**UserListItem**](#userlistitem)
+- [App State](#app-state)
+- [Final Thoughts & Possible Enhancements](#final-thoughts--possible-enhancements)
 
 # Design
 
@@ -333,3 +335,36 @@ Status icon is dependend on gesture direction, right - like, left - reject
 
 **Props**:
 - user: IUser
+
+# App State
+
+Application state is controlled by redux. In this case this comes down to fetching user data from single endpoint.
+
+I'm using redux-api-middleware to provide REQUEST, RECEIVE & FAILURE actions that are consumed by MainPage
+
+# Final Thoughts & Possible Enhancements
+
+- I was mainly developing & testing this application for Android devices. I did some adjustments to make it work for iOs as well but it should perform better on Android.
+
+- I have mainly focused on application UI for this task. Main challenges were to make FlatList and ListItem animations smooth. I think there is still room for optimization.
+
+- ListItem animation could be dealt with inside UserList component and have animation view displayed only for current item.
+That would decrease the weight of single ListItem and speed up the render. And wouldn't be painful for the user as List already focuses him on single item to interact with at the time.
+
+- UserList for iOs doesn't snap to item.
+
+- List could fetch more data from the server on reaching list end. Endpoint returns 20 random users out of 100 so it would required filtration of received data and in result wouldn't result in gaining 20 users on every poll.
+
+- Application doesn't save likes/rejects state, every time you start app you get fresh instance. If I had more time I would reuse UserList to create LikesPage with stored likes (via AsyncStorage) and possibility to alter their status
+
+- I was creating AssociatedButton with idea that API is returning associated field with User like data, it supossed to be displaying user photo inside but I have integrated the API were late into development so it became just an icon. It could be enhanced to show animated view with associated person data.
+
+- CacheManager from "react-native-expo-image-cache" could prefetch couple first images when getting the data from server to make it faster to load
+
+- ImageSlider could support left/right side clicks to iterate forward/backward through images
+
+- UserDetails could implement another version of ImageSlider where images would be displayed in full width/height, similar to FeelD app
+
+- Application is structured in such a way to provide possibility for defining theme within styles resource, so with a low cost app could implement multiple themes.
+
+- If had more time it would be great to write some E2E test specs and run them on several devices as the experience tend to change on different devices.

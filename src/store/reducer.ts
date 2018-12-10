@@ -1,7 +1,7 @@
+import { combineReducers } from "redux";
 import { IUser } from "../resources/model";
 import LogUtils from "../utils/LogUtils";
 import { ActionType } from "./api";
-import { combineReducers } from "redux";
 
 const INITIAL_STATE = {
   users: new Map<string, IUser>(),

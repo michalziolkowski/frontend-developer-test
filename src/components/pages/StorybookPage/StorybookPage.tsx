@@ -9,15 +9,7 @@ import styles from "../../../resources/styles";
 import Storybook from "../../../storybook";
 import IconButton from "../../atoms/IconButton";
 
-const { backgroundColor, iconColor, backIcon, iconPadding } = styles.detailPage;
-
-const StyledContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-self: stretch;
-  align-items: center;
-  background-color: ${backgroundColor};
-`;
+const { iconColor, backIcon, iconPadding } = styles.detailPage;
 
 class StorybookPage extends React.PureComponent {
   public static goBack = (navigation: NavigationScreenProp<any, any>) => () => {
