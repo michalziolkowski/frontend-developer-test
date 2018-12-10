@@ -2,11 +2,8 @@ import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import styles from "../../../resources/styles";
 import TestUtils from "../../../utils/TestUtils";
-import SliderIndicator, {
-  IProps,
-  StyledIndicator,
-  StyledPoint
-} from "./SliderIndicator";
+import SliderIndicator, { IProps } from "./SliderIndicator";
+import { StyledIndicator, StyledPoint } from "./styled";
 
 const props: IProps = {
   index: 0,
