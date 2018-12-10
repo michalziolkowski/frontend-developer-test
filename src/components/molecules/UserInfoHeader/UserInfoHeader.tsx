@@ -1,37 +1,14 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { NavigationScreenProp, withNavigation } from "react-navigation";
-// @ts-ignore
-import styled from "styled-components/native";
 import { IUser } from "../../../resources/model";
 import routes from "../../../resources/routes";
 import styles from "../../../resources/styles";
 import IconButton from "../../atoms/IconButton";
 import Text from "../../atoms/Text";
+import { HeaderView, IconView, StyledHeader } from "./styled";
 
-const { iconButtonSize, headerLinkOpacity } = styles.userInfoHeader;
-
-export const StyledHeader = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: stretch;
-  flex: 1;
-  align-items: center;
-`;
-StyledHeader.displayName = "Header";
-
-const HeaderView = styled.View`
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-export const IconView = styled.View`
-  align-items: flex-end;
-  justify-content: center;
-  align-items: center;
-  height: ${iconButtonSize};
-  width: ${iconButtonSize};
-`;
+const { headerLinkOpacity } = styles.userInfoHeader;
 
 export interface IProps {
   user: IUser;
@@ -40,9 +17,18 @@ export interface IProps {
   navigation?: NavigationScreenProp<any, any>;
 }
 
+/**
+ * Renders header for given *user*.
+ * Header text contains userInfo's name, age, sexuality, gender & type
+ * Header text is clickable and navigates to DetailsPage.
+ * If *icon* is specified clickable icon renders to the side and triggers *onIconClick* if pressed.
+ */
 export const PureUserInfoHeader = (props: IProps) => {
   const { icon, onIconClick, user } = props;
 
+  /**
+   * Displays clickable icon if *icon* defined
+   */
   const renderDetailsIcon = () =>
     icon && (
       <IconView>
@@ -50,9 +36,12 @@ export const PureUserInfoHeader = (props: IProps) => {
       </IconView>
     );
 
+  /**
+   * Navigates to DetailsPage with id parameter from *user* id
+   */
   const onHeaderClick = () => {
     if (props.navigation) {
-      props.navigation.navigate(routes.userDetails, { id: user.localId });
+      props.navigation.push(routes.userDetails, { id: user.localId });
     }
   };
 

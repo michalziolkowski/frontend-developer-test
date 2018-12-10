@@ -4,7 +4,8 @@ import routes from "../../../resources/routes";
 import styles from "../../../resources/styles";
 import MockUtils from "../../../utils/MockUtils";
 import TestUtils from "../../../utils/TestUtils";
-import { IconView, IProps, PureUserInfoHeader } from "./UserInfoHeader";
+import { IconView } from "./styled";
+import { IProps, PureUserInfoHeader } from "./UserInfoHeader";
 
 const props: IProps = {
   user: MockUtils.mockUser
@@ -103,7 +104,7 @@ describe("INTERACTION", () => {
   describe("Header Touchable", () => {
     it("on press calls *navigation* to user details route with user.localId as param", () => {
       // given
-      const navigation = { navigate: jest.fn() };
+      const navigation = { push: jest.fn() };
       // @ts-ignore
       wrapper.setProps({ navigation });
       wrapper.update();
@@ -113,7 +114,7 @@ describe("INTERACTION", () => {
       headerTouchable.props()["onPress"]();
 
       // then
-      expect(navigation.navigate).toBeCalledWith(routes.userDetails, {
+      expect(navigation.push).toBeCalledWith(routes.userDetails, {
         id: props.user.localId
       });
     });

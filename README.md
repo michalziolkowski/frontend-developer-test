@@ -266,6 +266,20 @@ If *showPartialAbout* is true, about text is cut to 7 lines.
 
 ### **UserInfoHeader**
 
+Renders header for given *user*.
+
+Header text contains userInfo's name, age, sexuality, gender & type
+
+Header text is clickable and navigates to DetailsPage.
+
+If *icon* is specified clickable icon renders to the side and triggers *onIconClick* if pressed.
+
+**Props**:
+- user: IUser
+- icon: string - optional
+- onIconClick: function - optional
+
+
 ## Organisms
 
 ### **UserCard**
