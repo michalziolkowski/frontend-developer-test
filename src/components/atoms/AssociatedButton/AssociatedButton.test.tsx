@@ -2,7 +2,8 @@ import { shallow, ShallowWrapper } from "enzyme";
 import React from "react";
 import styles from "../../../resources/styles";
 import TestUtils from "../../../utils/TestUtils";
-import AssociatedButton, { BorderIconView, IconView } from "./AssociatedButton";
+import AssociatedButton from "./AssociatedButton";
+import { BorderIconView, IconView } from "./styled";
 
 /* Setup */
 let wrapper: ShallowWrapper;
